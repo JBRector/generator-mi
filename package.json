@@ -23,9 +23,6 @@
   "files": [
     "app"
   ],
-  "keywords": [
-    "yeoman-generator"
-  ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
     "chalk": "~0.4.0",
