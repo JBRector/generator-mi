@@ -1,0 +1,28 @@
+.clearfix:after {
+   content: ".";
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.center {
+    margin:0 auto;
+}
+
+.left {
+    float:left;
+}
+
+.right {
+    float:right;
+}
+
+%cancel-float {
+    float:none;
+}
+
+.fullwidth,
+%fullwidth {
+    width:100%;
+}

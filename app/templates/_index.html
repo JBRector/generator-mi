@@ -1,0 +1,52 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <title><%= site_name %></title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="assets/css/ie.css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="assets/js/vendor/modernizr/modernizr.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Front End Starter Kit</h1>
+        <h2>by Jason Rector</h2>
+    </header>
+
+    <div id="content">
+        <p>Thanks for using my front end starter kit. This is not intended to be a complete front end solution, just a kit built for my personal preferences. Please feel free to fork it and edit as you see fit. Enjoy!</p>
+    </div>
+
+
+    <footer></footer>
+
+
+    <!-- build:js assets/js/site.js -->
+        <% if (include_jQuery) { %><script type="text/javascript" src="assets/js/vendor/jquery/dist/jquery.js"></script><% } %>
+        <% if (include_jRespond) { %><script type="text/javascript" src="assets/js/vendor/jRespond/index.js"></script><% } %>
+        <% if (include_jPanelMenu) { %><script type="text/javascript" src="assets/js/vendor/jpanelmenu/jquery.jpanelmenu.js"></script><% } %>
+        <% if (include_Mustache) { %><script type="text/javascript" src="assets/js/vendor/mustache/mustache.js"></script><% } %>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+    <!-- endbuild -->
+
+</body>
+</html>
