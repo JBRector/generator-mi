@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        jbr: paths,
+        project: paths,
 
         autoprefixer: {
             options: {
@@ -16,22 +16,41 @@ module.exports = function(grunt) {
             },
 
             non_ie: {
-                src: '<%= jbr.src %>/assets/css/main.css',
-                dest: '<%= jbr.build %>/assets/css/main.css'
+                src: '<%%= project.src %>/assets/css/main.css',
+                dest: '<%%= project.build %>/assets/css/main.css'
             },
 
             ie: {
-                src: '<%= jbr.build %>/assets/css/ie.css'
+                src: '<%%= project.build %>/assets/css/ie.css'
             }
         },
 
-        clean: ['<%= jbr.build %>'],
+        bowercopy: {
+            libs: {
+                options: {
+                    destPrefix:'<%%= project.src %>/assets/js/vendor'
+                },
+                files: {
+                    <% if (include_jQuery) { %>'jquery.min.js': 'jquery/dist/jquery.min.js',<% } %>
+                    <% if (include_jPanelMenu) { %>'jquery.jpanelmenu.min.js': 'jpanelmenu/jquery.jpanelmenu.min.js',<% } %>
+                    <% if (include_jRespond) { %>'jRespond.js': 'jRespond/index.js',<% } %>
+                    <% if (include_Mustache) { %>'mustache.js': 'mustache/mustache.js',<% } %>
+                    <% if (include_Handlebars) { %>'handlebars.js': 'handlebars/handlebars.js',<% } %>
+                    <% if (include_Underscore) { %>'underscore.js': 'underscore/underscore.js',<% } %>
+                    <% if (include_Bootstrap) { %>'bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+
+                    <% } %>
+                }
+            }
+        },
+
+        clean: ['<%%= project.build %>'],
 
         connect: {
             server: {
                 options: {
                     port: 9001,
-                    base: '<%= jbr.src %>',
+                    base: '<%%= project.src %>',
                     hostname: 'localhost',
                     open: true,
                     livereload:true
@@ -46,22 +65,22 @@ module.exports = function(grunt) {
                         expand: true,
                         flatten:true,
                         filter: 'isFile',
-                        src: ['<%= jbr.src %>/assets/fonts/**'],
-                        dest: '<%= jbr.build %>/assets/fonts/'
+                        src: ['<%%= project.src %>/assets/fonts/**'],
+                        dest: '<%%= project.build %>/assets/fonts/'
                     },
                     {
                         expand:true,
                         flatten:true,
                         filter: 'isFile',
-                        src:['<%= jbr.src %>/assets/images/**'],
-                        dest:'<%= jbr.build %>/assets/images/'
+                        src:['<%%= project.src %>/assets/images/**'],
+                        dest:'<%%= project.build %>/assets/images/'
                     },
                     {
                         expand:true,
                         filter: 'isFile',
                         flatten:true,
-                        src:'<%= jbr.src %>/*.html',
-                        dest:'<%= jbr.build %>/'
+                        src:'<%%= project.src %>/*.html',
+                        dest:'<%%= project.build %>/'
                     }
                 ]
             }
@@ -74,7 +93,7 @@ module.exports = function(grunt) {
                     imageAlpha: false,
                     quitAfter: true
                 },
-                src: ['<%= jbr.build %>/assets/images']
+                src: ['<%%= project.build %>/assets/images']
             }
         },
 
@@ -85,8 +104,8 @@ module.exports = function(grunt) {
 
         modernizr: {
             dist: {
-                'devFile': '<%= jbr.src %>/assets/js/vendor/modernizr/modernizr.js',
-                'outputFile': '<%= jbr.build %>/assets/js/vendor/modernizr/modernizr.js',
+                'devFile': '<%%= project.src %>/assets/js/vendor/modernizr/modernizr.js',
+                'outputFile': '<%%= project.build %>/assets/js/vendor/modernizr/modernizr.js',
                 'extra': {
                     'shiv': true,
                     'printshiv': false,
@@ -96,7 +115,7 @@ module.exports = function(grunt) {
                 },
                 'parsefiles': false,
                 'files': {
-                    'src':['<%= jbr.build %>/assets/js/site.js', '<%= jbr.build %>/assets/css/main.css']
+                    'src':['<%%= project.build %>/assets/js/site.js', '<%%= project.build %>/assets/css/main.css']
                 }
             }
         },
@@ -107,12 +126,12 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    '<%= jbr.src %>/assets/css/main.css' : '<%= jbr.src %>/assets/scss/main.scss'
+                    '<%%= project.src %>/assets/css/main.css' : '<%%= project.src %>/assets/scss/main.scss'
                 }
             },
             dev: {
                 files: {
-                    '<%= jbr.src %>/assets/css/main.css' : '<%= jbr.src %>/assets/scss/main.scss'
+                    '<%%= project.src %>/assets/css/main.css' : '<%%= project.src %>/assets/scss/main.scss'
                 }
             }
         },
@@ -121,28 +140,28 @@ module.exports = function(grunt) {
             ie: {
                 options: {
                     pattern: /\.lt-ie[8|9]/,
-                    output:'<%= jbr.build %>/assets/css/ie.css'
+                    output:'<%%= project.build %>/assets/css/ie.css'
                 },
                 files: {
-                    '<%= jbr.src %>/assets/css/main.css': '<%= jbr.src %>/assets/css/main.css'
+                    '<%%= project.src %>/assets/css/main.css': '<%%= project.src %>/assets/css/main.css'
                 }
             }
         },
 
         useminPrepare: {
-            html: ['<%= jbr.src %>/*.html'],
+            html: ['<%%= project.src %>/*.html'],
             options: {
-                dest: '<%= jbr.build %>'
+                dest: '<%%= project.build %>'
             }
         },
 
         usemin: {
-            html: ['<%= jbr.build %>/*.html']
+            html: ['<%%= project.build %>/*.html']
         },
 
         watch: {
             sass: {
-                files: ['<%= jbr.src %>/assets/scss/*', '<%= jbr.src %>/assets/scss/base/*', '<%= jbr.src %>/assets/scss/global/*', '<%= jbr.src %>/assets/scss/modules/*', '<%= jbr.src %>/assets/scss/pages/*'],
+                files: ['<%%= project.src %>/assets/scss/*', '<%%= project.src %>/assets/scss/base/*', '<%%= project.src %>/assets/scss/global/*', '<%%= project.src %>/assets/scss/modules/*', '<%%= project.src %>/assets/scss/pages/*'],
                 tasks: ['sass:dev']
             },
 
@@ -152,14 +171,18 @@ module.exports = function(grunt) {
 
             livereload: {
                 files: [
-                    '<%= jbr.src %>/*.html',
-                    '<%= jbr.src %>/assets/js/{,*/}*.js',
-                    '<%= jbr.src %>/assets/images/{,*/}*.{png,jpg,jpeg,webp,gif}']
+                    '<%%= project.src %>/*.html',
+                    '<%%= project.src %>/assets/js/{,*/}*.js',
+                    '<%%= project.src %>/assets/images/{,*/}*.{png,jpg,jpeg,webp,gif}']
             }
         }
     });
 
     require('load-grunt-tasks')(grunt);
+
+    grunt.registerTask('bowerclean', [
+        'bowercopy'
+    ]);
 
     // Run grunt server to start a local development server with node
     grunt.registerTask('server', [
@@ -176,7 +199,7 @@ module.exports = function(grunt) {
         'split_styles:ie',
         'autoprefixer',
         'copy',
-        'imageoptim',
+        <% if (include_Imageoptim) { %>'imageoptim',<% } else { %> /*'imageoptim',*/ <% } %>
         'useminPrepare',
         'concat',
         'uglify',

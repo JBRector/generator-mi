@@ -9,9 +9,18 @@ var chalk = require('chalk');
 var FredGenerator = yeoman.generators.Base.extend({
     init: function() {
         this.on('end', function () {
-            if (!this.options['skip-install']) {
-                this.installDependencies();
-            }
+            this.installDependencies({
+                skipInstall: this.options['skip-install'],
+                callback: function() {
+                    this.spawnCommand('grunt', ['bowerclean']);
+                }.bind(this)
+            });
+
+
+            // if (!this.options['skip-install']) {
+            //     this.installDependencies();
+            //     this.spawnCommand('grunt', ['bowerclean']);
+            // }
         });
     },
 
@@ -24,6 +33,13 @@ var FredGenerator = yeoman.generators.Base.extend({
             {
                 name: 'projectName',
                 message: 'What is the name of the project?'
+            },
+            {
+                type: 'confirm',
+                name: 'include_Bootstrap',
+                value: 'include_Bootstrap',
+                message: 'Include Bootstrap?',
+                default: false
             },
             {
                 type: 'checkbox',
@@ -50,13 +66,30 @@ var FredGenerator = yeoman.generators.Base.extend({
                         value: 'include_Mustache',
                         checked: false
                     },
+                    {
+                        name: 'Handlebars',
+                        value: 'include_Handlebars',
+                        checked: false
+                    },
+                    {
+                        name: 'Underscore',
+                        value: 'include_Underscore',
+                        checked: false
+                    },
                 ]
-
+            },
+            {
+                type: 'confirm',
+                name: 'include_Imageoptim',
+                value: 'include_Imageoptim',
+                message: chalk.red('The grunt build task uses ImageOptim to optimize images. ') + chalk.green('(imageoptim.com) ') + chalk.red('Do you have ImageOptim installed? (If not, I will disable that part of the grunt task)'),
+                default: false
             }
         ];
 
         this.prompt(prompts, function (answers) {
             this.projectName = answers.projectName;
+            this.include_Bootstrap = answers.include_Bootstrap;
 
             var dependencies = answers.dependencies;
 
@@ -68,6 +101,10 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.include_jPanelMenu = useDependency('include_jPanelMenu');
             this.include_jRespond = useDependency('include_jRespond');
             this.include_Mustache = useDependency('include_Mustache');
+            this.include_Handlebars = useDependency('include_Handlebars');
+            this.include_Underscore = useDependency('include_Underscore');
+
+            this.include_Imageoptim = answers.include_Imageoptim;
 
             done();
         }.bind(this));
@@ -113,25 +150,34 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         var context = {
             site_name: this.projectName,
+            include_Bootstrap: this.include_Bootstrap,
             include_jQuery: this.include_jQuery,
             include_jPanelMenu: this.include_jPanelMenu,
             include_jRespond: this.include_jRespond,
-            include_Mustache: this.include_Mustache
+            include_Mustache: this.include_Mustache,
+            include_Handlebars: this.include_Handlebars,
+            include_Underscore: this.include_Underscore,
+            include_Imageoptim: this.include_Imageoptim
         };
 
         this.template('_index.html', 'src/index.html', context);
+        this.template('_Gruntfile.js', 'Gruntfile.js', context);
 
         this.copy('.bowerrc', '.bowerrc');
         this.copy('_package.json', 'package.json');
-        this.copy('_Gruntfile.js', 'Gruntfile.js');
     },
 
     installBowerStuff: function() {
 
         var bower = {
-            name:this.projectName,
+            name:this._.slugify(this.projectName),
             private:true,
             dependencies: {}
+        };
+
+        if (this.include_Bootstrap) {
+            var bs = 'bootstrap-sass-official';
+            bower.dependencies[bs] = "~3.2.0";
         };
 
         if (this.include_jQuery) {
@@ -148,6 +194,14 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         if (this.include_Mustache) {
             bower.dependencies.mustache = "*";
+        };
+
+        if (this.include_Handlebars) {
+            bower.dependencies.handlebars = "1.3.x";
+        };
+
+        if (this.include_Underscore) {
+            bower.dependencies.underscore = "1.6.x";
         };
 
         bower.dependencies.modernizr = "~2.8.x";
