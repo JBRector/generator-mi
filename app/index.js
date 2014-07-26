@@ -47,7 +47,7 @@ var FredGenerator = yeoman.generators.Base.extend({
                 message: 'Select any dependencies you would like to add',
                 choices: [
                     {
-                        name: 'jQuery',
+                        name: 'jQuery (required if using bootstrap)',
                         value: 'include_jQuery',
                         checked: true
                     },
@@ -82,7 +82,7 @@ var FredGenerator = yeoman.generators.Base.extend({
                 type: 'confirm',
                 name: 'include_Imageoptim',
                 value: 'include_Imageoptim',
-                message: chalk.red('The grunt build task uses ImageOptim to optimize images. ') + chalk.green('(imageoptim.com) ') + chalk.red('Do you have ImageOptim installed? (If not, I will disable that part of the grunt task)'),
+                message: chalk.green('The grunt build task uses ImageOptim to optimize images.\n\n') + chalk.green('Do you have ImageOptim installed?\n(If not, I will disable that part of the grunt task)'),
                 default: false
             }
         ];
@@ -114,16 +114,19 @@ var FredGenerator = yeoman.generators.Base.extend({
         this.mkdir('src');
         this.mkdir('src/assets');
         this.mkdir('src/assets/scss');
-        this.mkdir('src/assets/scss/base');
-        this.mkdir('src/assets/scss/global');
-        this.mkdir('src/assets/scss/modules');
-        this.mkdir('src/assets/scss/pages');
         this.mkdir('src/assets/css');
         this.mkdir('src/assets/images');
         this.mkdir('src/assets/js');
         this.mkdir('src/assets/js/vendor');
         this.mkdir('src/assets/fonts');
         this.mkdir('src/assets/media');
+
+        if (!this.include_Bootstrap) {
+            this.mkdir('src/assets/scss/base');
+            this.mkdir('src/assets/scss/global');
+            this.mkdir('src/assets/scss/modules');
+            this.mkdir('src/assets/scss/pages');
+        }
     },
 
     // makefiles: function() {
@@ -131,20 +134,25 @@ var FredGenerator = yeoman.generators.Base.extend({
     // },
 
     copyFiles: function() {
-        this.copy('scss/_main.scss', 'src/assets/scss/main.scss');
-        this.copy('scss/_variables.scss', 'src/assets/scss/base/_variables.scss');
-        this.copy('scss/_mixins.scss', 'src/assets/scss/base/_mixins.scss');
-        this.copy('scss/_base.scss', 'src/assets/scss/base/_base.scss');
-        this.copy('scss/_type.scss', 'src/assets/scss/global/_type.scss');
-        this.copy('scss/_layout-helpers.scss', 'src/assets/scss/global/_layout-helpers.scss');
-        this.copy('scss/_structure.scss', 'src/assets/scss/global/_structure.scss');
-        this.copy('scss/_spacing.scss', 'src/assets/scss/global/_spacing.scss');
-        this.copy('scss/_buttons.scss', 'src/assets/scss/global/_buttons.scss');
-        this.copy('scss/_forms.scss', 'src/assets/scss/global/_forms.scss');
-        this.copy('scss/_header.scss', 'src/assets/scss/modules/_header.scss');
-        this.copy('scss/_footer.scss', 'src/assets/scss/modules/_footer.scss');
-        this.copy('scss/_navigation.scss', 'src/assets/scss/modules/_navigation.scss');
-        this.copy('scss/_home.scss', 'src/assets/scss/pages/_home.scss');
+
+
+        if (this.include_Bootstrap) {
+            this.copy('scss/_theme.scss', 'src/assets/scss/_theme.scss');
+        } else {
+            this.copy('scss/_variables.scss', 'src/assets/scss/base/_variables.scss');
+            this.copy('scss/_mixins.scss', 'src/assets/scss/base/_mixins.scss');
+            this.copy('scss/_base.scss', 'src/assets/scss/base/_base.scss');
+            this.copy('scss/_type.scss', 'src/assets/scss/global/_type.scss');
+            this.copy('scss/_layout-helpers.scss', 'src/assets/scss/global/_layout-helpers.scss');
+            this.copy('scss/_structure.scss', 'src/assets/scss/global/_structure.scss');
+            this.copy('scss/_spacing.scss', 'src/assets/scss/global/_spacing.scss');
+            this.copy('scss/_buttons.scss', 'src/assets/scss/global/_buttons.scss');
+            this.copy('scss/_forms.scss', 'src/assets/scss/global/_forms.scss');
+            this.copy('scss/_header.scss', 'src/assets/scss/modules/_header.scss');
+            this.copy('scss/_footer.scss', 'src/assets/scss/modules/_footer.scss');
+            this.copy('scss/_navigation.scss', 'src/assets/scss/modules/_navigation.scss');
+            this.copy('scss/_home.scss', 'src/assets/scss/pages/_home.scss');
+        }
 
         this.copy('js/_main.js', 'src/assets/js/main.js');
 
@@ -162,9 +170,12 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         this.template('_index.html', 'src/index.html', context);
         this.template('_Gruntfile.js', 'Gruntfile.js', context);
+        this.template('scss/_main.scss', 'src/assets/scss/main.scss', context);
 
+        this.copy('_.gitignore', '.gitignore');
         this.copy('.bowerrc', '.bowerrc');
         this.copy('_package.json', 'package.json');
+        this.copy('editorconfig', 'editorconfig');
     },
 
     installBowerStuff: function() {

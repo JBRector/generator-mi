@@ -31,17 +31,23 @@ module.exports = function(grunt) {
                     destPrefix:'<%%= project.src %>/assets/js/vendor'
                 },
                 files: {
+                    'modernizr.js': 'modernizr/modernizr.js',
                     <% if (include_jQuery) { %>'jquery.min.js': 'jquery/dist/jquery.min.js',<% } %>
                     <% if (include_jPanelMenu) { %>'jquery.jpanelmenu.min.js': 'jpanelmenu/jquery.jpanelmenu.min.js',<% } %>
                     <% if (include_jRespond) { %>'jRespond.js': 'jRespond/index.js',<% } %>
                     <% if (include_Mustache) { %>'mustache.js': 'mustache/mustache.js',<% } %>
                     <% if (include_Handlebars) { %>'handlebars.js': 'handlebars/handlebars.js',<% } %>
-                    <% if (include_Underscore) { %>'underscore.js': 'underscore/underscore.js',<% } %>
-                    <% if (include_Bootstrap) { %>'bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js',
-
-                    <% } %>
+                    <% if (include_Underscore) { %>'underscore.js': 'underscore/underscore.js'<% } %>
                 }
-            }
+            }<% if (include_Bootstrap) { %>,
+            bootstrap: {
+                files: {
+                    '<%%= project.src %>/assets/js/vendor/bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js',
+                    '<%%= project.src %>/assets/scss/bootstrap': 'bootstrap-sass-official/assets/stylesheets/bootstrap',
+                    '<%%= project.src %>/assets/scss/bootstrap.scss': 'bootstrap-sass-official/assets/stylesheets/bootstrap.scss',
+                    '<%%= project.src %>/assets/fonts': 'bootstrap-sass-official/assets/fonts/bootstrap'
+                }
+            }<% } %>
         },
 
         clean: ['<%%= project.build %>'],
@@ -104,8 +110,8 @@ module.exports = function(grunt) {
 
         modernizr: {
             dist: {
-                'devFile': '<%%= project.src %>/assets/js/vendor/modernizr/modernizr.js',
-                'outputFile': '<%%= project.build %>/assets/js/vendor/modernizr/modernizr.js',
+                'devFile': '<%%= project.src %>/assets/js/vendor/modernizr.js',
+                'outputFile': '<%%= project.build %>/assets/js/vendor/modernizr.js',
                 'extra': {
                     'shiv': true,
                     'printshiv': false,
@@ -161,7 +167,7 @@ module.exports = function(grunt) {
 
         watch: {
             sass: {
-                files: ['<%%= project.src %>/assets/scss/*', '<%%= project.src %>/assets/scss/base/*', '<%%= project.src %>/assets/scss/global/*', '<%%= project.src %>/assets/scss/modules/*', '<%%= project.src %>/assets/scss/pages/*'],
+                files: <% if (include_Bootstrap) { %>['<%%= project.src %>/assets/scss/*', '<%%= project.src %>/assets/scss/bootstrap/*', '<%%= project.src %>/assets/scss/bootstrap/mixins/*'],<% } else { %>['<%%= project.src %>/assets/scss/*', '<%%= project.src %>/assets/scss/base/*', '<%%= project.src %>/assets/scss/global/*', '<%%= project.src %>/assets/scss/modules/*', '<%%= project.src %>/assets/scss/pages/*'],<% } %>
                 tasks: ['sass:dev']
             },
 
