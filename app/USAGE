@@ -1,0 +1,23 @@
+Description:
+	Creates a Front-end starter kit that you can customize on install
+
+Optional additions:
+	Bootstrap
+	jQuery
+	jRespond
+	jPanelMenu
+	underscore.js
+	Mustache
+	Handlebars
+
+To create a new project:
+	yo fred
+
+	This will start the generator. Yeoman will ask you about what options you would like to include. It will then install a front-end starter kit based on your selections
+
+Included grunt tasks:
+	grunt server
+	This will start a local node server that will auto-refresh the browser any time you make changes.
+
+	grunt
+	The default task, which will compile/concatenate/minify everything in to a production-ready code base (located in the "release" folder)
