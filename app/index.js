@@ -15,12 +15,6 @@ var FredGenerator = yeoman.generators.Base.extend({
                     this.spawnCommand('grunt', ['bowerclean']);
                 }.bind(this)
             });
-
-
-            // if (!this.options['skip-install']) {
-            //     this.installDependencies();
-            //     this.spawnCommand('grunt', ['bowerclean']);
-            // }
         });
     },
 
