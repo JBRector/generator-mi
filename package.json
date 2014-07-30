@@ -1,18 +1,25 @@
 {
   "name": "generator-fred",
-  "version": "0.0.1",
-  "description": "Front End Yeoman generator",
-  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Meet FRED, The Front End Yeoman generator",
+  "homepage": "https://github.com/JBRector/generator-fred",
   "main": "app/index.js",
-  "repository": "JBRector/generator-fred",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JBRector/generator-fred"
+  },
   "author": {
     "name": "Jason Rector",
     "email": "jasonbrector@gmail.com",
-    "url": "https://github.com/JBRector"
+    "url": "http://www.jasonrectorweb.com"
   },
   "keywords": [
     "yeoman-generator",
-    "front-end"
+    "front-end",
+    "front end",
+    "starter kit",
+    "front end starter kit",
+    "front-end starter kit"
   ],
   "engines": {
     "node": ">=0.10.0"

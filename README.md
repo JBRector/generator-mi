@@ -25,7 +25,9 @@ This is a generator I made to start responsive website projects. Your project do
 
 ## ![How to use Fred](http://www.jasonrectorweb.com/images/fred-4.png) Usage
 
-Install - Coming soon (not yet published)
+Install - `npm install -g generator-fred`
+
+Generate a new project - cd in to project directory and `yo fred`
 
 To start a local development server with node: `grunt server`
 
