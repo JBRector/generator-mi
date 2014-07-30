@@ -11,7 +11,7 @@ This is a generator I made to start responsive website projects. Your project do
 - Installs [jQuery](http://www.jquery.com) (optional)
 - Installs [jRespond](https://github.com/ten1seven/jRespond) (optional) for managing your javascript on a responsive site
 - Installs [jPanelmenu](http://jpanelmenu.com/) (optional) for an easy way to handle mobile navigation
-- Installs [mustache.js](https://github.com/janl/mustache.js) (optional) in case you need some nifty javascript templating
+- Installs [mustache.js](https://github.com/janl/mustache.js) and/or [Handlebars](http://handlebarsjs.com/) (optional) in case you need some nifty javascript templating
 - Installs [underscore.js](http://underscorejs.org/) (optional) in case you like some useful programming helpers
 - Installs [respond.js](https://github.com/scottjehl/Respond) (optional) in case you give a crap about your site looking good in IE8
 
