@@ -14,33 +14,43 @@ Optional additions:
 To create a new project:
 	yo fred
 
-	This will start the generator. Yeoman will ask you about what options you would like to include. It will then install a front-end starter kit based on your selections
+	This will start the generator. Yeoman will ask you about what options you would like to include.
+	It will then install a front-end starter kit based on your selections
 
 Included grunt tasks:
 	grunt server
 	This will start a local node server that will auto-refresh the browser any time you make changes.
 
 	grunt
-	The default task, which will compile/concatenate/minify everything in to a production-ready code base (located in the "release" folder)
+	The default task, which will compile/concatenate/minify everything in to a production-ready code
+	base (located in the "release" folder)
 
 	What the default grunt task does:
-	- Creates a 'release' folder to hold production code. Or if this is not the first build, it cleans the folder and fills it with updated assets.
-	- Compile all sass and combine it in to one main.css file and one ie.css file, and minifies it. See below for development notes.
+	- Creates a 'release' folder to hold production code. Or if this is not the first build, it cleans
+	  the folder and fills it with updated assets.
+	- Compile all sass and combine it in to one main.css file and one ie.css file, and minifies it.
+	  See below for development notes.
 	- Concatenate all of the javascript files in to one and minify it.
 	- Copies all needed files to the release folder.
 	- Optimizes images (optional)
-	- Builds a custom version of modernizr that includes every modernizr feature that you used in your code, and gets rid of everything else. See below for development notes.
+	- Builds a custom version of modernizr that includes every modernizr feature that you used in your
+	  code, and gets rid of everything else. See below for development notes.
 
 During development:
 	SASS/CSS NOTES
-	- To add styles for IE 8 or lower, just use the boilerplate body class .lt-ie9. At build time, grunt will strip all of those styles and put them in an ie-only stylesheet. No need for you to edit the ie.css file.
+	- To add styles for IE 8 or lower, just use the boilerplate body class .lt-ie9. At build time, grunt
+	  will strip all of those styles and put them in an ie-only stylesheet. No need for you to edit the
+	  ie.css file.
 	- The grunt task uses auto-prefixer at build time. No need to add -moz- or -webkit- to anything.
 
 	JS NOTES
-	This starter kit uses modernizr. During development it includes the entire modernizr library, but at build time it will strip out all but the features that you actually used. No need to build a new production version, grunt will do that for you.
+	This starter kit uses modernizr. During development it includes the entire modernizr library, but at
+	build time it will strip out all but the features that you actually used. No need to build a new
+	production version, grunt will do that for you.
 
 	OTHER NOTES
-	If you selected to use Image Optim, no need to optimize images. The grunt task will handle that for you at build time.
+	If you selected to use Image Optim, no need to optimize images. The grunt task will handle that for
+	you at build time.
 
 
 
