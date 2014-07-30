@@ -19,26 +19,22 @@
 
     <link rel="stylesheet" href="assets/css/main.css" />
 
-    <!--[if lte IE 8]>
-        <link rel="stylesheet" href="assets/css/ie.css" />
-    <![endif]-->
+    <% if (include_Respond) { %><!--[if lte IE 8]><script type="text/javascript" src="assets/js/vendor/respond.js"></script><link rel="stylesheet" href="assets/css/ie.css" /><![endif]--><% } else { %><!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie.css" /><![endif]--><% } %>
 
     <script type="text/javascript" src="assets/js/vendor/modernizr.js"></script>
 </head>
 <body>
 
     <header>
-        <h1>Front End Starter Kit</h1>
+        <h1>FRED Front End Starter Kit</h1>
         <h2>by Jason Rector</h2>
     </header>
 
     <div id="content">
-        <p>Thanks for using my front end starter kit. This is not intended to be a complete front end solution, just a kit built for my personal preferences. Please feel free to fork it and edit as you see fit. Enjoy!</p>
+        <p>Thanks for using my front end starter kit. This is not intended to be a complete front end solution, just a kit built for my personal preferences. Please feel free to use it as you see fit. Enjoy!</p>
     </div>
 
-
     <footer></footer>
-
 
     <!-- build:js assets/js/site.js -->
         <% if (include_jQuery) { %><script type="text/javascript" src="assets/js/vendor/jquery.min.js"></script><% } %>

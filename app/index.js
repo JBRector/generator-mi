@@ -70,6 +70,11 @@ var FredGenerator = yeoman.generators.Base.extend({
                         value: 'include_Underscore',
                         checked: false
                     },
+                    {
+                        name: 'Respond.js (< IE8 only)',
+                        value: 'include_Respond',
+                        checked: false
+                    },
                 ]
             },
             {
@@ -97,6 +102,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.include_Mustache = useDependency('include_Mustache');
             this.include_Handlebars = useDependency('include_Handlebars');
             this.include_Underscore = useDependency('include_Underscore');
+            this.include_Respond = useDependency('include_Respond');
 
             this.include_Imageoptim = answers.include_Imageoptim;
 
@@ -148,8 +154,6 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.copy('scss/_home.scss', 'src/assets/scss/pages/_home.scss');
         }
 
-        this.copy('js/_main.js', 'src/assets/js/main.js');
-
         var context = {
             site_name: this.projectName,
             include_Bootstrap: this.include_Bootstrap,
@@ -159,12 +163,14 @@ var FredGenerator = yeoman.generators.Base.extend({
             include_Mustache: this.include_Mustache,
             include_Handlebars: this.include_Handlebars,
             include_Underscore: this.include_Underscore,
+            include_Respond: this.include_Respond,
             include_Imageoptim: this.include_Imageoptim
         };
 
         this.template('_index.html', 'src/index.html', context);
         this.template('_Gruntfile.js', 'Gruntfile.js', context);
         this.template('scss/_main.scss', 'src/assets/scss/main.scss', context);
+        this.template('js/_main.js', 'src/assets/js/main.js', context);
 
         this.copy('_.gitignore', '.gitignore');
         this.copy('.bowerrc', '.bowerrc');
@@ -207,6 +213,10 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         if (this.include_Underscore) {
             bower.dependencies.underscore = "1.6.x";
+        };
+
+        if (this.include_Respond) {
+            bower.dependencies.respond = "1.4.x";
         };
 
         bower.dependencies.modernizr = "~2.8.x";
