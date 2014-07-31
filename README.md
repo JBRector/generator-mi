@@ -6,7 +6,7 @@ This is a generator I made to start responsive website projects. Your project do
 
 ## ![Fred has many features](http://www.jasonrectorweb.com/images/fred-2.jpg) Features
 
-- Uses SASS for CSS preprocessing
+- Uses [SASS](http://sass-lang.com/) for CSS preprocessing
 - Installs [Bootstrap](http://www.getbootstrap.com) (optional)
 - Installs [jQuery](http://www.jquery.com) (optional)
 - Installs [jRespond](https://github.com/ten1seven/jRespond) (optional) for managing your javascript on a responsive site
