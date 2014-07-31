@@ -71,7 +71,7 @@ var FredGenerator = yeoman.generators.Base.extend({
                         checked: false
                     },
                     {
-                        name: 'Respond.js (< IE8 only)',
+                        name: 'Respond.js (IE8 and earlier only)',
                         value: 'include_Respond',
                         checked: false
                     },
