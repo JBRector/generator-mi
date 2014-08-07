@@ -1,53 +1,93 @@
-@mixin spacing($collection: (top, right, bottom, left)) {
-    @each $dir in $collection {
-        %margin-#{$dir},
-        .margin-#{$dir} {margin-#{$dir}:$space;}
-        %margin-#{$dir}-2x,
-        .margin-#{$dir}-2x {margin-#{$dir}:$space*2;}
-        %margin-#{$dir}-3x,
-        .margin-#{$dir}-3x {margin-#{$dir}:$space*3}
-        %margin-#{$dir}-4x,
-        .margin-#{$dir}-4x {margin-#{$dir}:$space*4;}
-        %margin-#{$dir}-5x,
-        .margin-#{$dir}-5x {margin-#{$dir}:$space*5;}
+@mixin spacing($collection: ('', -top, -right, -bottom, -left), $directions: ('', -sides, -verticals)) {
+    @each $side in $collection {
 
-        %padding-#{$dir},
-        .padding-#{$dir} {padding-#{$dir}:$space;}
-        %padding-#{$dir}-2x,
-        .padding-#{$dir}-2x {padding-#{$dir}:$space*2;}
-        %padding-#{$dir}-3x,
-        .padding-#{$dir}-3x {padding-#{$dir}:$space*3}
-        %padding-#{$dir}-4x,
-        .padding-#{$dir}-4x {padding-#{$dir}:$space*4;}
-        %padding-#{$dir}-5x,
-        .padding-#{$dir}-5x {padding-#{$dir}:$space*5;}
-    }
+        %margin#{$side}-half,
+        .margin#{$side}-half {margin#{$side}:$space/2;}
+        %margin#{$side},
+        .margin#{$side} {margin#{$side}:$space;}
 
-    %margin-verticals,
-    .margin-verticals {
-        margin-top:$space;
-        margin-bottom:$space;
-    }
+        @for $i from 2 through 5 {
+            %margin#{$side}-#{$i}x,
+            .margin#{$side}-#{$i}x {
+                margin#{$side}:$space*($i);
+            }
+        }
 
-    @for $i from 2 through 5 {
-        %margin-verticals-#{$i}x,
-        .margin-verticals-#{$i}x {
-            margin-top:$space*($i);
-            margin-bottom:$space*($i);
+        %padding#{$side}-half,
+        .padding#{$side}-half {padding#{$side}:$space/2;}
+        %padding#{$side},
+        .padding#{$side} {padding#{$side}:$space;}
+
+        @for $i from 2 through 5 {
+            %padding#{$side}-#{$i}x,
+            .padding#{$side}-#{$i}x {
+                padding#{$side}:$space*($i);
+            }
         }
     }
 
-    %margin-sides,
-    .margin-sides {
-        margin-left:$space;
-        margin-right:$space;
-    }
-
-    @for $i from 2 through 5 {
-        %margin-sides-#{$i}x,
-        .margin-sides-#{$i}x {
-            margin-left:$space*($i);
-            margin-right:$space*($i);
+    @each $dir in $directions {
+        %margin#{$dir}-half,
+        .margin#{$dir}-half {
+            @if ($dir == '-sides') {
+                margin-left:$space/2;
+                margin-right:$space/2;
+            } @else {
+                margin-top:$space/2;
+                margin-bottom:$space/2;
+            }
+        }
+        %margin#{$dir},
+        .margin#{$dir} {
+            @if ($dir == '-sides') {
+                margin-left:$space;
+                margin-right:$space;
+            } @else {
+                margin-top:$space;
+                margin-bottom:$space;
+            }
+        }
+        %padding#{$dir}-half,
+        .padding#{$dir}-half {
+            @if ($dir == '-sides') {
+                padding-left:$space/2;
+                padding-right:$space/2;
+            } @else {
+                padding-top:$space/2;
+                padding-bottom:$space/2;
+            }
+        }
+        %padding#{$dir},
+        .padding#{$dir} {
+            @if ($dir == '-sides') {
+                padding-left:$space;
+                padding-right:$space;
+            } @else {
+                padding-top:$space;
+                padding-bottom:$space;
+            }
+        }
+        @for $i from 2 through 5 {
+            %margin#{$dir}-#{$i}x,
+            .margin#{$dir}-#{$i}x {
+                @if ($dir == '-sides') {
+                    margin-left:$space*($i);
+                    margin-right:$space*($i);
+                } @else {
+                    margin-top:$space*($i);
+                    margin-bottom:$space*($i);
+                }
+            }
+            %padding#{$dir}-#{$i}x,
+            .padding#{$dir}-#{$i}x {
+                @if ($dir == '-sides') {
+                    padding-left:$space*($i);
+                    padding-right:$space*($i);
+                } @else {
+                    padding-top:$space*($i);
+                    padding-bottom:$space*($i);
+                }
+            }
         }
     }
 }
