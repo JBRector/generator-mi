@@ -4,6 +4,8 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var updateNotifier = require('update-notifier');
+var pkg = require('./package.json');
 
 
 var FredGenerator = yeoman.generators.Base.extend({
@@ -16,6 +18,15 @@ var FredGenerator = yeoman.generators.Base.extend({
                 }.bind(this)
             });
         });
+    },
+
+    updateFred: function() {
+        var notifier = updateNotifier({
+            packageName: pkg.name,
+            packageVersion: pkg.version
+        });
+
+        notifier.notify('Update available to Fred: ' + notifier.update.latest);
     },
 
     promptUser: function() {
