@@ -6,15 +6,18 @@
    clear: both;
 }
 
-.center {
+.center,
+%center {
     margin:0 auto;
 }
 
-.left {
+.left,
+%left {
     float:left;
 }
 
-.right {
+.right,
+%right {
     float:right;
 }
 
@@ -25,4 +28,29 @@
 .fullwidth,
 %fullwidth {
     width:100%;
+}
+
+.one-third,
+%one-third {
+    width:33.33%;
+}
+
+.two-thirds,
+%two-thirds {
+    width:66.66%;
+}
+
+.half,
+%half {
+    width:50%;
+}
+
+%upper {
+    text-transform:uppercase;
+}
+
+%reset,
+.reset {
+    margin:0;
+    padding:0;
 }
