@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 
         autoprefixer: {
             options: {
-                browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'ie 9', 'ie 8']
+                browsers: ['> 1%', 'last 5 versions', 'Firefox ESR', 'Opera 12.1', 'ie 9', 'ie 8']
             },
 
             non_ie: {
@@ -77,10 +77,9 @@ module.exports = function(grunt) {
                     },
                     {
                         expand:true,
-                        flatten:true,
-                        filter: 'isFile',
-                        src:['<%%= project.src %>/assets/images/**'],
-                        dest:'<%%= project.build %>/assets/images/'
+                        cwd: '<%= project.src %>/assets/images/',
+                        src: '**/*',
+                        dest:'<%= project.build %>/assets/images/'
                     },
                     {
                         expand:true,
@@ -107,7 +106,7 @@ module.exports = function(grunt) {
                     imageAlpha: false,
                     quitAfter: true
                 },
-                src: ['<%%= project.build %>/assets/images']
+                src: ['<%= project.build %>/assets/images/**/*']
             }
         },
 
