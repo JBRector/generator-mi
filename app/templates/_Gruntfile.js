@@ -88,7 +88,14 @@ module.exports = function(grunt) {
                         flatten:true,
                         src:'<%%= project.src %>/*.html',
                         dest:'<%%= project.build %>/'
-                    }
+                    }<% if (include_Respond) { %>,
+                    {
+                        expand:true,
+                        filter: 'isFile',
+                        flatten:true,
+                        src:'<%= project.src %>/assets/js/vendor/respond.js',
+                        dest:'<%= project.build %>/assets/js/vendor/'
+                    }<% } %>
                 ]
             }
         },
