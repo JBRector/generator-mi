@@ -1,6 +1,55 @@
 body {
     font-family:$font-stack;
     font-size:62.5%;
+    color:$grey-med;
+    -webkit-font-smoothing: antialiased;
 }
 
-@include font-size();
+h1,h2,h3,h4,h5,h6,
+p,
+ul,ol,
+address,
+blockquote {
+    margin:0 0 $b-margin-em 0;
+    line-height:$line-height;
+}
+
+nav ul {
+    @extend %reset;
+}
+
+h1 { font-size:$standard-em*2; }
+h2 { font-size:$standard-em*1.71429; }
+h3 { font-size:$standard-em*1.42857; }
+h4 { font-size:$standard-em*1.28571; }
+h5 { font-size:$standard-em*1.14286; }
+
+p,
+ol,ul,
+address {
+    font-size:$standard-em;
+}
+
+a {
+
+    &:hover {
+
+    }
+}
+
+%upper,
+.upper {
+    text-transform:uppercase;
+}
+
+blockquote {
+    quotes: '\201C' '\201D';
+
+    &:before {
+        content: open-quote;
+    }
+
+    &:after {
+        content: close-quote;
+    }
+}

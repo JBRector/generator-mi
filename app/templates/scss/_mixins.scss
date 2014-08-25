@@ -1,48 +1,17 @@
-@mixin font-size() {
-
-    h1,h2,h3,h4,h5,h6,
-    p,
-    ul,ol,
-    address {
-        margin:0 0 $b-margin-em 0;
-        line-height:$line-height;
+@mixin img-replace($w, $h, $block:false) {
+    text-indent:-9999px;
+    overflow:hidden;
+    width:$w;
+    height:$h;
+    @if ($block) {
+        display:block;
     }
+}
 
-    h1 { font-size:$standard-em*2; }
-    h2 { font-size:$standard-em*1.71429; }
-    h3 { font-size:$standard-em*1.42857; }
-    h4 { font-size:$standard-em*1.28571; }
-    h5 { font-size:$standard-em*1.14286; }
-    h6 { font-size:$standard-em; }
+@mixin min-mq($breakpoint) {
+    @media screen and (min-width:$breakpoint) { @content; }
+}
 
-    p,
-    ol,ul,
-    address {
-        font-size:$standard-em;
-    }
-
-    // Stupid old IE >9 can't use rem. Stupid, stupid IE.
-    // These IE styles will be stripped by grunt and placed in an ie-only stylesheet.
-    .lt-ie9 {
-        h1,h2,h3,h4,h5,h6,
-        p,
-        ul,ol,
-        address {
-            margin:0 0 $b-margin-px 0;
-        }
-
-        h1 { font-size:$standard-px*2; }
-        h2 { font-size:$standard-px*1.71429; }
-        h3 { font-size:$standard-px*1.42857; }
-        h4 { font-size:$standard-px*1.28571; }
-        h5 { font-size:$standard-px*1.14286; }
-        h6 { font-size:$standard-px; }
-
-        p,
-        ol,
-        ul,
-        address {
-            font-size:$standard-px;
-        }
-    }
+@mixin max-mq($breakpoint) {
+    @media screen and (max-width:$breakpoint) { @content; }
 }

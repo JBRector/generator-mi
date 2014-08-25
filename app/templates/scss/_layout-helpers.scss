@@ -11,6 +11,16 @@
     margin:0 auto;
 }
 
+.imgcenter {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.textcenter {
+    text-align:center;
+}
+
 .left,
 %left {
     float:left;
@@ -19,6 +29,20 @@
 .right,
 %right {
     float:right;
+}
+
+.relative {
+    position:relative;
+}
+
+.absolute {
+    position:absolute;
+}
+
+.topright {
+    position:absolute;
+    top:0;
+    right:0;
 }
 
 %cancel-float {
@@ -33,11 +57,23 @@
 .one-third,
 %one-third {
     width:33.33%;
+
+    @include max-mq($mobile) {
+        width:100% !important;
+    }
 }
 
 .two-thirds,
 %two-thirds {
-    width:66.66%;
+    width:66.66% !important;
+
+    @include max-mq($mobile) {
+        width:100% !important;
+    }
+}
+
+.overflow {
+    overflow:hidden;
 }
 
 .half,
@@ -45,12 +81,48 @@
     width:50%;
 }
 
-%upper {
-    text-transform:uppercase;
+.block {
+    display:block;
+}
+
+.nolist,
+%nolist {
+    list-style:none;
+    margin:0;
+    padding:0;
 }
 
 %reset,
 .reset {
     margin:0;
     padding:0;
+}
+
+.border,
+%border {
+    border:1px solid $border-color;
+}
+
+%border-top,
+.border-top {
+    border-top:1px solid $border-color;
+}
+
+%border-right,
+.border-right {
+    border-right:1px solid $border-color;
+}
+
+%border-bottom,
+.border-bottom {
+    border-bottom:1px solid $border-color;
+}
+
+%border-left,
+.border-left {
+    border-left:1px solid $border-color;
+}
+
+.nomargin {
+    margin:0;
 }
