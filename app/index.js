@@ -82,6 +82,11 @@ var FredGenerator = yeoman.generators.Base.extend({
                         checked: false
                     },
                     {
+                        name: 'jQuery Cookie',
+                        value: 'include_Cookie',
+                        checked: false
+                    },
+                    {
                         name: 'Respond.js (IE8 and earlier only)',
                         value: 'include_Respond',
                         checked: false
@@ -113,6 +118,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.include_Mustache = useDependency('include_Mustache');
             this.include_Handlebars = useDependency('include_Handlebars');
             this.include_Underscore = useDependency('include_Underscore');
+            this.include_Cookie = useDependency('include_Cookie');
             this.include_Respond = useDependency('include_Respond');
 
             this.include_Imageoptim = answers.include_Imageoptim;
@@ -174,6 +180,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             include_Mustache: this.include_Mustache,
             include_Handlebars: this.include_Handlebars,
             include_Underscore: this.include_Underscore,
+            include_Cookie: this.include_Cookie,
             include_Respond: this.include_Respond,
             include_Imageoptim: this.include_Imageoptim
         };
@@ -224,6 +231,10 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         if (this.include_Underscore) {
             bower.dependencies.underscore = "1.6.x";
+        };
+
+        if (this.include_Cookie) {
+            bower.dependencies.jquery-cookie = "1.4.x"
         };
 
         if (this.include_Respond) {

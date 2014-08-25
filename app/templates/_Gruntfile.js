@@ -38,6 +38,7 @@ module.exports = function(grunt) {
                     <% if (include_Mustache) { %>'mustache.js': 'mustache/mustache.js',<% } %>
                     <% if (include_Handlebars) { %>'handlebars.js': 'handlebars/handlebars.js',<% } %>
                     <% if (include_Underscore) { %>'underscore.js': 'underscore/underscore.js',<% } %>
+                    <% if (include_Cookie) { %>'jquery.cookie.js': 'jquery-cookie/jquery.cookie.js',<% } %>
                     <% if (include_Respond) { %>'respond.js': 'respond/dest/respond.min.js'<% } %>
                 }
             }<% if (include_Bootstrap) { %>,

@@ -13,6 +13,7 @@ This is a generator I made to start responsive website projects. Your project do
 - Installs [jPanelmenu](http://jpanelmenu.com/) (optional) for an easy way to handle mobile navigation
 - Installs [mustache.js](https://github.com/janl/mustache.js) and/or [Handlebars](http://handlebarsjs.com/) (optional) in case you need some nifty javascript templating
 - Installs [underscore.js](http://underscorejs.org/) (optional) in case you like some useful programming helpers
+- Installs [jQuery Cookie](https://github.com/carhartl/jquery-cookie) (optional) for all of your cookie-ing needs
 - Installs [respond.js](https://github.com/scottjehl/Respond) (optional) in case you give a crap about your site looking good in IE8
 
 - If you have [Image Optim](https://imageoptim.com/) installed, the grunt task will run it for you. If not, just let Fred know that you don't have it when he asks.
