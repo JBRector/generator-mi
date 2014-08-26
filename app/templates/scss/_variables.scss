@@ -3,6 +3,13 @@ $mobile: 600px;
 $tablet: 768px;
 $full: 1024px;
 
+/*
+    If there is a max-width for centered blocks, set $max-width-set to true
+    and set $max-width to the value.
+*/
+$max-width-set: false;
+$max-width: 960px;
+
 // Fonts
 $font-stack: Arial, Helvetica, Sans-Serif;
 $standard-em: 1.4rem;

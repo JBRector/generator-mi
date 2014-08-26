@@ -37,11 +37,7 @@ a {
     }
 }
 
-%upper,
-.upper {
-    text-transform:uppercase;
-}
-
+// Makes some nice blockquotes. Comment out if not needed.
 blockquote {
     quotes: '\201C' '\201D';
 
@@ -52,4 +48,21 @@ blockquote {
     &:after {
         content: close-quote;
     }
+}
+
+// Text Helpers
+.upper,
+%upper {
+    text-transform:uppercase;
+}
+
+.sentence,
+%sentence {
+    text-transform:none;
+}
+
+.indent,
+%indent {
+    @extend %overflow-hidden;
+    text-indent:-9999px;
 }
