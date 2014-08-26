@@ -20,14 +20,14 @@ var FredGenerator = yeoman.generators.Base.extend({
         });
     },
 
-    updateFred: function() {
-        var notifier = updateNotifier({
-            packageName: pkg.name,
-            packageVersion: pkg.version
-        });
+    // updateFred: function() {
+    //     var notifier = updateNotifier({
+    //         packageName: pkg.name,
+    //         packageVersion: pkg.version
+    //     });
 
-        notifier.notify('Update available to Fred: ' + notifier.update.latest);
-    },
+    //     notifier.notify('Update available to Fred: ' + notifier.update.latest);
+    // },
 
     promptUser: function() {
         var done = this.async();
