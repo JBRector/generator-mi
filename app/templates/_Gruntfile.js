@@ -78,9 +78,9 @@ module.exports = function(grunt) {
                     },
                     {
                         expand:true,
-                        cwd: '<%= project.src %>/assets/images/',
+                        cwd: '<%%= project.src %>/assets/images/',
                         src: '**/*',
-                        dest:'<%= project.build %>/assets/images/'
+                        dest:'<%%= project.build %>/assets/images/'
                     },
                     {
                         expand:true,
@@ -93,8 +93,8 @@ module.exports = function(grunt) {
                         expand:true,
                         filter: 'isFile',
                         flatten:true,
-                        src:'<%= project.src %>/assets/js/vendor/respond.js',
-                        dest:'<%= project.build %>/assets/js/vendor/'
+                        src:'<%%= project.src %>/assets/js/vendor/respond.js',
+                        dest:'<%%= project.build %>/assets/js/vendor/'
                     }<% } %>
                 ]
             }
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
                     imageAlpha: false,
                     quitAfter: true
                 },
-                src: ['<%= project.build %>/assets/images/**/*']
+                src: ['<%%= project.build %>/assets/images/**/*']
             }
         },
 

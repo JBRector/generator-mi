@@ -1,6 +1,6 @@
 {
   "name": "generator-fred",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Meet FRED, The Front End Yeoman generator",
   "homepage": "https://github.com/JBRector/generator-fred",
   "main": "app/index.js",
