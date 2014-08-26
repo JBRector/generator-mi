@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-var pkg = require('./package.json');
+var pkg = require('../package.json');
 
 
 var FredGenerator = yeoman.generators.Base.extend({
