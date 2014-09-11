@@ -164,3 +164,24 @@
 .nomargin {
     margin:0;
 }
+
+@mixin mobileHelpers($widths: $list) {
+    @each $width in $widths {
+        @media screen and (max-width:#{$width}px) {
+            .width-100-#{$width} {
+                width:100%;
+            }
+            .width-50-#{$width} {
+                width:50%;
+            }
+            .hide-#{$width} {
+                display:none;
+            }
+            .noborder-#{$width} {
+                border:0;
+            }
+        }
+    }
+}
+
+@include mobileHelpers();
