@@ -92,6 +92,13 @@ var FredGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'confirm',
+                name: 'include_GA',
+                value: 'include_GA',
+                message: 'Include Google Analytics?',
+                default: false
+            },
+            {
+                type: 'confirm',
                 name: 'include_Imageoptim',
                 value: 'include_Imageoptim',
                 message: chalk.green('The grunt build task uses ImageOptim to optimize images.\n\n') + chalk.green('Do you have ImageOptim installed?\n(If not, I will disable that part of the grunt task)'),
@@ -119,6 +126,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.include_Cookie =       useDependency('include_Cookie');
             this.include_Respond =      useDependency('include_Respond');
 
+            this.include_GA =           answers.include_GA;
             this.include_Imageoptim =   answers.include_Imageoptim;
 
             done();
@@ -170,7 +178,7 @@ var FredGenerator = yeoman.generators.Base.extend({
         }
 
         var context = {
-            site_name: this.projectName,
+            site_name:              this.projectName,
             use_PHP:                this.use_PHP,
             include_Bootstrap:      this.include_Bootstrap,
             include_jQuery:         this.include_jQuery,
@@ -181,6 +189,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             include_Underscore:     this.include_Underscore,
             include_Cookie:         this.include_Cookie,
             include_Respond:        this.include_Respond,
+            include_GA:             this.include_GA,
             include_Imageoptim:     this.include_Imageoptim
         };
 
