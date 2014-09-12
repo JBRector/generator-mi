@@ -31,6 +31,13 @@ var FredGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'confirm',
+                name: 'use_PHP',
+                value: 'use_PHP',
+                message: 'Use PHP?',
+                default: false
+            },
+            {
+                type: 'confirm',
                 name: 'include_Bootstrap',
                 value: 'include_Bootstrap',
                 message: 'Include Bootstrap?',
@@ -93,8 +100,9 @@ var FredGenerator = yeoman.generators.Base.extend({
         ];
 
         this.prompt(prompts, function (answers) {
-            this.projectName = answers.projectName;
-            this.include_Bootstrap = answers.include_Bootstrap;
+            this.projectName =          answers.projectName;
+            this.use_PHP =              answers.use_PHP;
+            this.include_Bootstrap =    answers.include_Bootstrap;
 
             var dependencies = answers.dependencies;
 
@@ -102,16 +110,16 @@ var FredGenerator = yeoman.generators.Base.extend({
                 return dependencies && dependencies.indexOf(dep) !== -1;
             }
 
-            this.include_jQuery = useDependency('include_jQuery');
-            this.include_jPanelMenu = useDependency('include_jPanelMenu');
-            this.include_jRespond = useDependency('include_jRespond');
-            this.include_Mustache = useDependency('include_Mustache');
-            this.include_Handlebars = useDependency('include_Handlebars');
-            this.include_Underscore = useDependency('include_Underscore');
-            this.include_Cookie = useDependency('include_Cookie');
-            this.include_Respond = useDependency('include_Respond');
+            this.include_jQuery =       useDependency('include_jQuery');
+            this.include_jPanelMenu =   useDependency('include_jPanelMenu');
+            this.include_jRespond =     useDependency('include_jRespond');
+            this.include_Mustache =     useDependency('include_Mustache');
+            this.include_Handlebars =   useDependency('include_Handlebars');
+            this.include_Underscore =   useDependency('include_Underscore');
+            this.include_Cookie =       useDependency('include_Cookie');
+            this.include_Respond =      useDependency('include_Respond');
 
-            this.include_Imageoptim = answers.include_Imageoptim;
+            this.include_Imageoptim =   answers.include_Imageoptim;
 
             done();
         }.bind(this));
@@ -134,11 +142,11 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.mkdir('src/assets/scss/modules');
             this.mkdir('src/assets/scss/pages');
         }
-    },
 
-    // makefiles: function() {
-    //     this.touch('src/assets/scss/base/_variables.scss');
-    // },
+        if (this.use_PHP) {
+            this.mkdir('src/includes');
+        }
+    },
 
     copyFiles: function() {
 
@@ -163,19 +171,27 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         var context = {
             site_name: this.projectName,
-            include_Bootstrap: this.include_Bootstrap,
-            include_jQuery: this.include_jQuery,
-            include_jPanelMenu: this.include_jPanelMenu,
-            include_jRespond: this.include_jRespond,
-            include_Mustache: this.include_Mustache,
-            include_Handlebars: this.include_Handlebars,
-            include_Underscore: this.include_Underscore,
-            include_Cookie: this.include_Cookie,
-            include_Respond: this.include_Respond,
-            include_Imageoptim: this.include_Imageoptim
+            use_PHP:                this.use_PHP,
+            include_Bootstrap:      this.include_Bootstrap,
+            include_jQuery:         this.include_jQuery,
+            include_jPanelMenu:     this.include_jPanelMenu,
+            include_jRespond:       this.include_jRespond,
+            include_Mustache:       this.include_Mustache,
+            include_Handlebars:     this.include_Handlebars,
+            include_Underscore:     this.include_Underscore,
+            include_Cookie:         this.include_Cookie,
+            include_Respond:        this.include_Respond,
+            include_Imageoptim:     this.include_Imageoptim
         };
 
-        this.template('_index.html', 'src/index.html', context);
+        if (this.use_PHP) {
+            this.template('includes/_header.php', 'src/includes/_header.php', context);
+            this.template('includes/_footer.php', 'src/includes/_footer.php', context);
+            this.template('_index.php', 'src/index.php', context);
+        } else {
+            this.template('_index.html', 'src/index.html', context);
+        }
+
         this.template('_Gruntfile.js', 'Gruntfile.js', context);
         this.template('scss/_main.scss', 'src/assets/scss/main.scss', context);
         this.template('js/_main.js', 'src/assets/js/main.js', context);
@@ -224,7 +240,8 @@ var FredGenerator = yeoman.generators.Base.extend({
         };
 
         if (this.include_Cookie) {
-            bower.dependencies.jquery-cookie = "1.4.x"
+            var jqc = 'jquery-cookie';
+            bower.dependencies[jqc] = "1.4.x"
         };
 
         if (this.include_Respond) {

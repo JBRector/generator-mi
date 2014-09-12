@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
     'use strict';
 
+    <% if (use_PHP) { %>var phpMiddleware = require('connect-php');<% } %>
+
     var paths = {
         src: 'src',
         build: 'release'
@@ -54,6 +56,39 @@ module.exports = function(grunt) {
 
         clean: ['<%%= project.build %>'],
 
+        <% if (use_PHP) { %>
+        connect: {
+            server: {
+                options: {
+                    port: 9001,
+                    base: '<%%= project.src %>',
+                    hostname: 'localhost',
+                    open: true,
+                    livereload:true,
+                    middleware: function(connect, options) {
+                        // Same as in grunt-contrib-connect
+                        var middlewares = [];
+                        var directory = options.directory ||
+                        options.base[options.base.length - 1];
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+
+                        // Here comes the PHP middleware
+                        middlewares.push(phpMiddleware(directory));
+
+                        // Same as in grunt-contrib-connect
+                        options.base.forEach(function(base) {
+                            middlewares.push(connect.static(base));
+                        });
+
+                        middlewares.push(connect.directory(directory));
+                        return middlewares;
+                    }
+                }
+            }
+        },
+        <% } else { %>
         connect: {
             server: {
                 options: {
@@ -65,6 +100,7 @@ module.exports = function(grunt) {
                 }
             }
         },
+        <% } %>
 
         copy: {
             main: {
@@ -95,6 +131,20 @@ module.exports = function(grunt) {
                         flatten:true,
                         src:'<%%= project.src %>/assets/js/vendor/respond.js',
                         dest:'<%%= project.build %>/assets/js/vendor/'
+                    }<% } %><% if (use_PHP) { %>,
+                    {
+                        expand:true,
+                        filter: 'isFile',
+                        flatten:true,
+                        src:'<%%= project.src %>/*.php',
+                        dest:'<%%= project.build %>'
+                    },
+                    {
+                        expand:true,
+                        filter: 'isFile',
+                        flatten:true,
+                        src:'<%%= project.src %>/includes/*.php',
+                        dest:'<%%= project.build %>/includes/'
                     }<% } %>
                 ]
             }
@@ -163,14 +213,14 @@ module.exports = function(grunt) {
         },
 
         useminPrepare: {
-            html: ['<%%= project.src %>/*.html'],
+            html: <% if (use_PHP) { %>['<%%= project.src %>/includes/_footer.php']<% } else { %>['<%%= project.src %>/*.html']<% } %>,
             options: {
                 dest: '<%%= project.build %>'
             }
         },
 
         usemin: {
-            html: ['<%%= project.build %>/*.html']
+            html: <% if (use_PHP) { %>['<%%= project.build %>/includes/_footer.php']<% } else { %>['<%%= project.build %>/*.html']<% } %>
         },
 
         watch: {
@@ -185,7 +235,7 @@ module.exports = function(grunt) {
 
             livereload: {
                 files: [
-                    '<%%= project.src %>/*.html',
+                    <% if (use_PHP) { %>'<%%= project.src %>/**/*.php'<% } else { %>'<%%= project.src %>/*.html'<% } %>,
                     '<%%= project.src %>/assets/js/{,*/}*.js',
                     '<%%= project.src %>/assets/images/{,*/}*.{png,jpg,jpeg,webp,gif}']
             }
