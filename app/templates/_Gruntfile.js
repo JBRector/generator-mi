@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 files: {
                     '<%%= project.src %>/assets/js/vendor/bootstrap.js': 'bootstrap-sass-official/assets/javascripts/bootstrap.js',
                     '<%%= project.src %>/assets/scss/bootstrap': 'bootstrap-sass-official/assets/stylesheets/bootstrap',
-                    '<%%= project.src %>/assets/scss/bootstrap.scss': 'bootstrap-sass-official/assets/stylesheets/bootstrap.scss',
+                    '<%%= project.src %>/assets/scss/bootstrap.scss': 'bootstrap-sass-official/assets/stylesheets/_bootstrap.scss',
                     '<%%= project.src %>/assets/fonts': 'bootstrap-sass-official/assets/fonts/bootstrap'
                 }
             }<% } %>
