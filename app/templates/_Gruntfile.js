@@ -161,6 +161,10 @@ module.exports = function(grunt) {
             }
         },
 
+        jshint: {
+            files: ['<%= project.src %>/assets/js/*.js']
+        },
+
         livereload: {
             // 35729 Default livereload listening port.
             port: 9001
@@ -262,6 +266,7 @@ module.exports = function(grunt) {
         'sass:dist',
         'split_styles:ie',
         'autoprefixer',
+        'jshint',
         'copy',
         <% if (include_Imageoptim) { %>'imageoptim',<% } else { %> /*'imageoptim',*/ <% } %>
         'useminPrepare',
