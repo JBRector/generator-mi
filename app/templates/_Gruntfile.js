@@ -131,7 +131,7 @@ module.exports = function(grunt) {
                         flatten:true,
                         src:'<%%= project.src %>/assets/js/vendor/respond.js',
                         dest:'<%%= project.build %>/assets/js/vendor/'
-                    }<% } %><% if (use_PHP) { %>,
+                    }<% }; if (use_PHP) { %>,
                     {
                         expand:true,
                         filter: 'isFile',
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            files: ['<%= project.src %>/assets/js/*.js']
+            files: ['<%%= project.src %>/assets/js/*.js']
         },
 
         livereload: {
