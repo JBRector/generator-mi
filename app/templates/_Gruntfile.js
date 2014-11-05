@@ -115,7 +115,7 @@ module.exports = function(grunt) {
                     {
                         expand:true,
                         cwd: '<%%= project.src %>/assets/images/',
-                        src: '**/*',
+                        src: '**/*.{png,jpg,jpeg,gif}',
                         dest:'<%%= project.build %>/assets/images/'
                     },
                     {
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
                     imageAlpha: false,
                     quitAfter: true
                 },
-                src: ['<%%= project.build %>/assets/images/**/*']
+                src: ['<%%= project.build %>/assets/images/**/*.{png,jpg,jpeg,gif}']
             }
         },
 
@@ -216,6 +216,35 @@ module.exports = function(grunt) {
             }
         },
 
+        svg2png: {
+            all: {
+                files: [{
+                    cwd: '<%%= project.src %>/assets/images/',
+                    src: ['**/*.svg'],
+                    dest: '<%%= project.src %>/assets/images/png/'
+                }]
+            }
+        },
+
+        svgmin: {
+            options: {
+                plugins: [
+                    { removeViewBox: false },               // don't remove the viewbox atribute from the SVG
+                    { removeUselessStrokeAndFill: false },  // don't remove Useless Strokes and Fills
+                    { removeEmptyAttrs: false }             // don't remove Empty Attributes from the SVG
+                ]
+            },
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= project.src %>/assets/images',
+                    src: ['**/*.svg'],
+                    dest: '<%%= project.build %>/assets/images/',
+                    ext: '.png'
+                }]
+            }
+        },
+
         useminPrepare: {
             html: <% if (use_PHP) { %>['<%%= project.src %>/includes/_footer.php']<% } else { %>['<%%= project.src %>/*.html']<% } %>,
             options: {
@@ -268,6 +297,8 @@ module.exports = function(grunt) {
         'autoprefixer',
         'jshint',
         'copy',
+        'svg2png',
+        'svgmin',
         <% if (include_Imageoptim) { %>'imageoptim',<% } else { %> /*'imageoptim',*/ <% } %>
         'useminPrepare',
         'concat',

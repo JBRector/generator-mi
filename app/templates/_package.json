@@ -23,6 +23,8 @@
     "grunt-modernizr": "^0.5.2",
     "grunt-split-styles": "^0.3.0",
     "grunt-bowercopy": "~1.1.0",
-    "grunt-contrib-jshint": "^0.10.0"
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-svg2png": "^0.2.5",
+    "grunt-svgmin": "^1.0.0"
   }
 }
