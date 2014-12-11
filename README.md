@@ -23,6 +23,12 @@ This is a generator I made to start responsive website projects. Your project do
 ### Dependencies
 
 - If you're using Yeoman, you probably already have [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) installed. But if not, do that.
+- [SASS](http://sass-lang.com/)
+- The grunt svgmin task requires [SVGO](https://github.com/svg/svgo)
+
+### Future Development Plans
+
+- Make SVG minification/png conversion optional
 
 ## ![How to use Fred](http://www.jasonrectorweb.com/images/fred-4.png) Usage
 
