@@ -3,3 +3,4 @@ src/assets/js/bower
 .DS_Store
 .sass-cache/
 release/
+npm-debug.log
