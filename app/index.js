@@ -92,6 +92,13 @@ var FredGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'confirm',
+                name: 'include_Uncss',
+                value: 'include_Uncss',
+                message: 'Include uncss in grunt task?\n' + chalk.red("Don't answer yes if you are using any script that injects HTML, such as jPanelMenu or most sliders"),
+                default: false
+            },
+            {
+                type: 'confirm',
                 name: 'include_GA',
                 value: 'include_GA',
                 message: 'Include Google Analytics?',
@@ -126,6 +133,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             this.include_Cookie =       useDependency('include_Cookie');
             this.include_Respond =      useDependency('include_Respond');
 
+            this.include_Uncss =        answers.include_Uncss;
             this.include_GA =           answers.include_GA;
             this.include_Imageoptim =   answers.include_Imageoptim;
 
@@ -189,6 +197,7 @@ var FredGenerator = yeoman.generators.Base.extend({
             include_Underscore:     this.include_Underscore,
             include_Cookie:         this.include_Cookie,
             include_Respond:        this.include_Respond,
+            include_Uncss:          this.include_Uncss,
             include_GA:             this.include_GA,
             include_Imageoptim:     this.include_Imageoptim
         };
