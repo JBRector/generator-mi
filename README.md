@@ -36,6 +36,8 @@ Install - `npm install -g generator-fred`
 
 Generate a new project - cd in to project directory and `yo fred`
 
+Run `npm install`
+
 To start a local development server with node: `grunt server`
 
 To build for production: `grunt`

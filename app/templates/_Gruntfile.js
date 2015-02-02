@@ -117,21 +117,14 @@ module.exports = function(grunt) {
                         cwd: '<%%= project.src %>/assets/images/',
                         src: '**/*.{png,jpg,jpeg,gif}',
                         dest:'<%%= project.build %>/assets/images/'
-                    },
-                    {
-                        expand:true,
-                        filter: 'isFile',
-                        flatten:true,
-                        src:'<%%= project.src %>/*.html',
-                        dest:'<%%= project.build %>/'
-                    }<% if (include_Respond) { %>,
+                    },<% if (include_Respond) { %>
                     {
                         expand:true,
                         filter: 'isFile',
                         flatten:true,
                         src:'<%%= project.src %>/assets/js/vendor/respond.js',
                         dest:'<%%= project.build %>/assets/js/vendor/'
-                    }<% }; if (use_PHP) { %>,
+                    },<% }; if (use_PHP) { %>
                     {
                         expand:true,
                         filter: 'isFile',
@@ -145,7 +138,15 @@ module.exports = function(grunt) {
                         flatten:true,
                         src:'<%%= project.src %>/includes/*.php',
                         dest:'<%%= project.build %>/includes/'
-                    }<% } %>
+                    }<% } else { %>
+                    {
+                        expand:true,
+                        filter: 'isFile',
+                        flatten:true,
+                        src:'<%%= project.src %>/*.html',
+                        dest:'<%%= project.build %>/'
+                    }
+                    <% } %>
                 ]
             }
         },
@@ -245,6 +246,14 @@ module.exports = function(grunt) {
             }
         },
 
+        uncss: {
+            dist: {
+                files: {
+                    <% if (use_PHP) { %>'<%%= project.build %>/assets/css/main.css': ['<%%= project.build %>/**/*.php']<% } else { %>'<%%= project.build %>/assets/css/main.css': ['<%%= project.build %>/*.html']<% } %>
+                }
+            }
+        },
+
         useminPrepare: {
             html: <% if (use_PHP) { %>['<%%= project.src %>/includes/_footer.php']<% } else { %>['<%%= project.src %>/*.html']<% } %>,
             options: {
@@ -304,6 +313,7 @@ module.exports = function(grunt) {
         'concat',
         'uglify',
         'usemin',
+        <% if (include_Uncss) { %>'uncss',<% } else { %> /*'uncss',*/ <% } %>
         'modernizr'
     ]);
 
