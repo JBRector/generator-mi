@@ -1,10 +1,8 @@
-# ![Introducing Fred](http://www.jasonrectorweb.com/images/fred-1.jpg) Introducing Fred
+# Mindstream Interactive Front-End Starter
 
-### A personal Front-End [Yeoman](http://yeoman.io) Generator
+### A Front-End [Yeoman](http://yeoman.io) Generator for Mindstream Interactive projects
 
-This is a generator I made to start responsive website projects. Your project doesn't have to be responsive, though. It uses SASS and has a gruntfile that I think covers pretty much everything I have needed to do.
-
-## ![Fred has many features](http://www.jasonrectorweb.com/images/fred-2.jpg) Features
+## Features
 
 - Uses [SASS](http://sass-lang.com/) for CSS preprocessing
 - Installs [Bootstrap](http://www.getbootstrap.com) (optional)
@@ -18,19 +16,19 @@ This is a generator I made to start responsive website projects. Your project do
 
 - If you have [Image Optim](https://imageoptim.com/) installed, the grunt task will run it for you. If not, just let Fred know that you don't have it when he asks.
 
-## ![Get started with Fred](http://www.jasonrectorweb.com/images/fred-3.jpg) Getting Started
+## Getting Started
 
 ### Dependencies
 
-- If you're using Yeoman, you probably already have [Grunt](http://gruntjs.com/) and [Bower](http://bower.io/) installed. But if not, do that.
+- [Yeoman](http://yeoman.io)
+- [Grunt](http://gruntjs.com/)
+- [Gulp](http://gulpjs.com/)
+- [Bower](http://bower.io/) installed. But if not, do that.
 - [SASS](http://sass-lang.com/)
-- The grunt svgmin task requires [SVGO](https://github.com/svg/svgo)
 
-### Future Development Plans
+## Usage
 
-- Make SVG minification/png conversion optional
-
-## ![How to use Fred](http://www.jasonrectorweb.com/images/fred-4.png) Usage
+---- This section will need to be completed after the generator is finished -----
 
 Install - `npm install -g generator-fred`
 
@@ -43,4 +41,3 @@ To start a local development server with node: `grunt server`
 To build for production: `grunt`
 
 Please reference [USAGE](https://github.com/JBRector/generator-fred/blob/master/app/USAGE) for specifics on how to use the starter kit.
-
