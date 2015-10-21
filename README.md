@@ -23,7 +23,7 @@
 - [Yeoman](http://yeoman.io)
 - [Grunt](http://gruntjs.com/)
 - [Gulp](http://gulpjs.com/)
-- [Bower](http://bower.io/) installed. But if not, do that.
+- [Bower](http://bower.io/)
 - [SASS](http://sass-lang.com/)
 
 ## Usage
