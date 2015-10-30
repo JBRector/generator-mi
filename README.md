@@ -26,6 +26,8 @@ Generate a new project - cd in to project directory and `yo mi`.
 
 The generator will pull down necessary files and automaticlly run `npm install` for you.
 
+Build the site: `gulp`
+
 To start a local development server with node: `gulp watch`
 
 To build for production: `gulp prod`
