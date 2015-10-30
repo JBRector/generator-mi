@@ -2,19 +2,13 @@
 
 ### A Front-End [Yeoman](http://yeoman.io) Generator for Mindstream Interactive projects
 
+This generator uses the [Front-End Boilerplate](https://github.com/myasonik/Front-end_Boilerplate) project originally created by [Michail Yasonik](https://github.com/myasonik)
+
 ## Features
 
 - Uses [SASS](http://sass-lang.com/) for CSS preprocessing
-- Installs [Bootstrap](http://www.getbootstrap.com) (optional)
-- Installs [jQuery](http://www.jquery.com) (optional)
-- Installs [jRespond](https://github.com/ten1seven/jRespond) (optional) for managing your javascript on a responsive site
-- Installs [jPanelmenu](http://jpanelmenu.com/) (optional) for an easy way to handle mobile navigation
-- Installs [mustache.js](https://github.com/janl/mustache.js) and/or [Handlebars](http://handlebarsjs.com/) (optional) in case you need some nifty javascript templating
-- Installs [underscore.js](http://underscorejs.org/) (optional) in case you like some useful programming helpers
-- Installs [jQuery Cookie](https://github.com/carhartl/jquery-cookie) (optional) for all of your cookie-ing needs
-- Installs [respond.js](https://github.com/scottjehl/Respond) (optional) in case you give a crap about your site looking good in IE8
-
-- If you have [Image Optim](https://imageoptim.com/) installed, the grunt task will run it for you. If not, just let Fred know that you don't have it when he asks.
+- Can use either [Jade](http://www.getbootstrap.com) or [HTML includes](https://www.npmjs.com/package/gulp-file-include) for templating
+- Uses [Breakpoint SASS](http://breakpoint-sass.com/)
 
 ## Getting Started
 
@@ -23,24 +17,15 @@
 - [nodejs](https://nodejs.org/)
 - [Yeoman](http://yeoman.io) - `npm install yo -g`
 - [Gulp](http://gulpjs.com/) - `npm install gulp -g`
-- [SASS](http://sass-lang.com/)
-
-If you want to use grunt instead of gulp, these are also required:
-- [Grunt CLI](http://gruntjs.com/) - `npm install grunt-cli -g`
-- [Bower](http://bower.io/) - `npm install bower -g`
 
 ## Usage
 
----- This section will need to be completed after the generator is finished -----
+Install - `npm install -g generator-mi`
 
-Install - `npm install -g generator-fred`
+Generate a new project - cd in to project directory and `yo mi`.
 
-Generate a new project - cd in to project directory and `yo fred`
+The generator will pull down necessary files and automaticlly run `npm install` for you.
 
-Run `npm install`
+To start a local development server with node: `gulp watch`
 
-To start a local development server with node: `grunt server`
-
-To build for production: `grunt`
-
-Please reference [USAGE](https://github.com/JBRector/generator-fred/blob/master/app/USAGE) for specifics on how to use the starter kit.
+To build for production: `gulp prod`
