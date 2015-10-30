@@ -7,15 +7,10 @@ var chalk = require('chalk');
 var pkg = require('../package.json');
 
 
-var FredGenerator = yeoman.generators.Base.extend({
+var MSGenerator = yeoman.generators.Base.extend({
     init: function() {
         this.on('end', function () {
-            this.installDependencies({
-                skipInstall: this.options['skip-install'],
-                callback: function() {
-                    this.spawnCommand('grunt', ['bowerclean']);
-                }.bind(this)
-            });
+            this.npmInstall();
         });
     },
 
@@ -24,6 +19,7 @@ var FredGenerator = yeoman.generators.Base.extend({
 
         console.log(this.yeoman);
 
+        // Prompt user to choose options
         var prompts = [
             {
                 name: 'projectName',
@@ -31,245 +27,100 @@ var FredGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'confirm',
-                name: 'use_PHP',
-                value: 'use_PHP',
-                message: 'Use PHP?',
+                name: 'use_Jade',
+                value: 'use_Jade',
+                message: 'Use Jade?',
                 default: false
             },
-            {
-                type: 'confirm',
-                name: 'include_Bootstrap',
-                value: 'include_Bootstrap',
-                message: 'Include Bootstrap?',
-                default: false
-            },
-            {
-                type: 'checkbox',
-                name: 'dependencies',
-                message: 'Select any dependencies you would like to add',
-                choices: [
-                    {
-                        name: 'jQuery (required if using bootstrap)',
-                        value: 'include_jQuery',
-                        checked: true
-                    },
-                    {
-                        name: 'jPanelMenu',
-                        value: 'include_jPanelMenu',
-                        checked: false
-                    },
-                    {
-                        name: 'jRespond',
-                        value: 'include_jRespond',
-                        checked: false
-                    },
-                    {
-                        name: 'Mustache',
-                        value: 'include_Mustache',
-                        checked: false
-                    },
-                    {
-                        name: 'Handlebars',
-                        value: 'include_Handlebars',
-                        checked: false
-                    },
-                    {
-                        name: 'Underscore',
-                        value: 'include_Underscore',
-                        checked: false
-                    },
-                    {
-                        name: 'jQuery Cookie',
-                        value: 'include_Cookie',
-                        checked: false
-                    },
-                    {
-                        name: 'Respond.js (IE8 and earlier only)',
-                        value: 'include_Respond',
-                        checked: false
-                    },
-                ]
-            },
-            {
-                type: 'confirm',
-                name: 'include_Uncss',
-                value: 'include_Uncss',
-                message: 'Include uncss in grunt task?\n' + chalk.red("Don't answer yes if you are using any script that injects HTML, such as jPanelMenu or most sliders"),
-                default: false
-            },
-            {
-                type: 'confirm',
-                name: 'include_GA',
-                value: 'include_GA',
-                message: 'Include Google Analytics?',
-                default: false
-            },
-            {
-                type: 'confirm',
-                name: 'include_Imageoptim',
-                value: 'include_Imageoptim',
-                message: chalk.green('The grunt build task uses ImageOptim to optimize images.\n\n') + chalk.green('Do you have ImageOptim installed?\n(If not, I will disable that part of the grunt task)'),
-                default: false
-            }
         ];
 
         this.prompt(prompts, function (answers) {
-            this.projectName =          answers.projectName;
-            this.use_PHP =              answers.use_PHP;
-            this.include_Bootstrap =    answers.include_Bootstrap;
-
-            var dependencies = answers.dependencies;
-
-            function useDependency(dep) {
-                return dependencies && dependencies.indexOf(dep) !== -1;
-            }
-
-            this.include_jQuery =       useDependency('include_jQuery');
-            this.include_jPanelMenu =   useDependency('include_jPanelMenu');
-            this.include_jRespond =     useDependency('include_jRespond');
-            this.include_Mustache =     useDependency('include_Mustache');
-            this.include_Handlebars =   useDependency('include_Handlebars');
-            this.include_Underscore =   useDependency('include_Underscore');
-            this.include_Cookie =       useDependency('include_Cookie');
-            this.include_Respond =      useDependency('include_Respond');
-
-            this.include_Uncss =        answers.include_Uncss;
-            this.include_GA =           answers.include_GA;
-            this.include_Imageoptim =   answers.include_Imageoptim;
-
+            this.projectName =      answers.projectName;
+            this.use_Jade =         answers.use_Jade;
             done();
         }.bind(this));
     },
 
     scaffold: function() {
-        this.mkdir('src');
-        this.mkdir('src/assets');
-        this.mkdir('src/assets/scss');
-        this.mkdir('src/assets/css');
-        this.mkdir('src/assets/images');
-        this.mkdir('src/assets/js');
-        this.mkdir('src/assets/js/vendor');
-        this.mkdir('src/assets/fonts');
-        this.mkdir('src/assets/media');
+        // Create all of the needed directories
+        this.mkdir('source');
+        this.mkdir('source/scripts');
+        this.mkdir('source/styles');
+        this.mkdir('source/styles/global');
+        this.mkdir('source/styles/utils');
+        this.mkdir('source/styles/utils/functions');
+        this.mkdir('source/styles/utils/mixins');
+        this.mkdir('source/views');
+        this.mkdir('gulp');
 
-        if (!this.include_Bootstrap) {
-            this.mkdir('src/assets/scss/base');
-            this.mkdir('src/assets/scss/global');
-            this.mkdir('src/assets/scss/modules');
-            this.mkdir('src/assets/scss/pages');
-        }
-
-        if (this.use_PHP) {
-            this.mkdir('src/includes');
+        if (this.use_Jade) {
+            this.mkdir('source/views/mixins');
+            this.mkdir('source/views/templates');
+        } else {
+            this.mkdir('source/views/partials');
         }
     },
 
     copyFiles: function() {
 
-
-        if (this.include_Bootstrap) {
-            this.copy('scss/_theme.scss', 'src/assets/scss/_theme.scss');
+        // Copy views
+        if (this.use_Jade) {
+            this.copy('source/views/mixins/_if-ie.jade', 'source/views/mixins/if-ie.jade');
+            this.copy('source/views/_index.jade', 'source/views/index.jade');
         } else {
-            this.copy('scss/_variables.scss', 'src/assets/scss/base/_variables.scss');
-            this.copy('scss/_mixins.scss', 'src/assets/scss/base/_mixins.scss');
-            this.copy('scss/_base.scss', 'src/assets/scss/base/_base.scss');
-            this.copy('scss/_type.scss', 'src/assets/scss/global/_type.scss');
-            this.copy('scss/_layout-helpers.scss', 'src/assets/scss/global/_layout-helpers.scss');
-            this.copy('scss/_structure.scss', 'src/assets/scss/global/_structure.scss');
-            this.copy('scss/_spacing.scss', 'src/assets/scss/global/_spacing.scss');
-            this.copy('scss/_buttons.scss', 'src/assets/scss/global/_buttons.scss');
-            this.copy('scss/_forms.scss', 'src/assets/scss/global/_forms.scss');
-            this.copy('scss/_header.scss', 'src/assets/scss/modules/_header.scss');
-            this.copy('scss/_footer.scss', 'src/assets/scss/modules/_footer.scss');
-            this.copy('scss/_navigation.scss', 'src/assets/scss/modules/_navigation.scss');
-            this.copy('scss/_home.scss', 'src/assets/scss/pages/_home.scss');
+            this.copy('source/views/partials/_footer.html', 'source/views/partials/_footer.html');
+            this.copy('source/views/partials/_header.html', 'source/views/partials/_header.html');
+            this.copy('source/views/_index.html', 'source/views/index.html');
         }
 
+        // Copy gulp files
+        this.copy('_gulpfile.js', 'gulpfile.js');
+        this.copy('gulp/_common.js', 'gulp/common.js');
+        this.copy('gulp/_config.js', 'gulp/config.js');
+        this.copy('gulp/_images.js', 'gulp/images.js');
+        this.copy('gulp/_scripts.js', 'gulp/scripts.js');
+        this.copy('gulp/_styles.js', 'gulp/styles.js');
+        this.copy('gulp/_watching.js', 'gulp/watching.js');
+
+        // Copy script and sass files
+        this.copy('source/scripts/_main.js', 'source/scripts/main.js');
+        this.copy('source/styles/_vars.scss', 'source/styles/_vars.scss');
+        this.copy('source/styles/_main.scss', 'source/styles/main.scss');
+        this.copy('source/styles/global/_base.scss', 'source/styles/global/_base.scss');
+        this.copy('source/styles/global/_normalize.scss', 'source/styles/global/_normalize.scss');
+        this.copy('source/styles/global/_shame.scss', 'source/styles/global/_shame.scss');
+        this.copy('source/styles/global/_trumps.scss', 'source/styles/global/_trumps.scss');
+        this.copy('source/styles/utils/functions/_map-getters.scss', 'source/styles/utils/functions/_map-getters.scss');
+        this.copy('source/styles/utils/functions/_valid-value.scss', 'source/styles/utils/functions/_valid-value.scss');
+        this.copy('source/styles/utils/mixins/_attention.scss', 'source/styles/utils/mixins/_attention.scss');
+        this.copy('source/styles/utils/mixins/_clearfix.scss', 'source/styles/utils/mixins/_clearfix.scss');
+        this.copy('source/styles/utils/mixins/_hide-text.scss', 'source/styles/utils/mixins/_hide-text.scss');
+        this.copy('source/styles/utils/mixins/_reset.scss', 'source/styles/utils/mixins/_reset.scss');
+
+        // For files that need info from yeoman, use .template instead of .copy.
         var context = {
-            site_name:              this.projectName,
-            use_PHP:                this.use_PHP,
-            include_Bootstrap:      this.include_Bootstrap,
-            include_jQuery:         this.include_jQuery,
-            include_jPanelMenu:     this.include_jPanelMenu,
-            include_jRespond:       this.include_jRespond,
-            include_Mustache:       this.include_Mustache,
-            include_Handlebars:     this.include_Handlebars,
-            include_Underscore:     this.include_Underscore,
-            include_Cookie:         this.include_Cookie,
-            include_Respond:        this.include_Respond,
-            include_Uncss:          this.include_Uncss,
-            include_GA:             this.include_GA,
-            include_Imageoptim:     this.include_Imageoptim
+            site_name:      this.projectName,
+            use_Jade:       this.use_Jade
         };
 
-        if (this.use_PHP) {
-            this.template('includes/_header.php', 'src/includes/_header.php', context);
-            this.template('includes/_footer.php', 'src/includes/_footer.php', context);
-            this.template('_index.php', 'src/index.php', context);
+        if (this.use_Jade) {
+            this.template('source/views/templates/_master.jade', 'source/views/templates/master.jade', context);
         } else {
-            this.template('_index.html', 'src/index.html', context);
+            this.template('source/views/partials/_head.html', 'source/views/partials/_head.html', context);
         }
 
-        this.template('_Gruntfile.js', 'Gruntfile.js', context);
-        this.template('scss/_main.scss', 'src/assets/scss/main.scss', context);
-        this.template('js/_main.js', 'src/assets/js/main.js', context);
+        this.template('gulp/_templates.js', 'gulp/templates.js', context);
 
+        // Copy npm and git files
         this.copy('_.gitignore', '.gitignore');
-        this.copy('.bowerrc', '.bowerrc');
-        this.copy('_package.json', 'package.json');
-        this.copy('editorconfig', 'editorconfig');
-    },
+        this.copy('_README.md', 'README.md');
 
-    installBowerStuff: function() {
-
-        var bower = {
-            name:this._.slugify(this.projectName),
-            private:true,
-            dependencies: {}
-        };
-
-        if (this.include_Bootstrap) {
-            var bs = 'bootstrap-sass-official';
-            bower.dependencies[bs] = "~3.2.0";
-        };
-
-        if (this.include_jQuery) {
-            bower.dependencies.jquery = "~1.11.x";
-        };
-
-        if (this.include_jPanelMenu) {
-            bower.dependencies.jpanelmenu = "~1.2.x";
-        };
-
-        if (this.include_jRespond) {
-            bower.dependencies.jrespond = "https://raw.githubusercontent.com/ten1seven/jRespond/master/js/jRespond.min.js";
-        };
-
-        if (this.include_Mustache) {
-            bower.dependencies.mustache = "*";
-        };
-
-        if (this.include_Handlebars) {
-            bower.dependencies.handlebars = "1.3.x";
-        };
-
-        if (this.include_Underscore) {
-            bower.dependencies.underscore = "1.6.x";
-        };
-
-        if (this.include_Cookie) {
-            var jqc = 'jquery-cookie';
-            bower.dependencies[jqc] = "1.4.x"
-        };
-
-        if (this.include_Respond) {
-            bower.dependencies.respond = "1.4.x";
-        };
-
-        bower.dependencies.modernizr = "~2.8.x";
-
-        this.write('bower.json', JSON.stringify(bower, null, 2));
+        if (this.use_Jade) {
+            this.copy('_package-Jade.json', 'package.json');
+        } else {
+            this.copy('_package.json', 'package.json');
+        }
     }
 });
 
-module.exports = FredGenerator;
+module.exports = MSGenerator;

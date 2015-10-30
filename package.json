@@ -1,17 +1,17 @@
 {
-  "name": "generator-fred",
-  "version": "1.4.3",
-  "description": "Meet FRED, The Front End Yeoman generator",
-  "homepage": "https://github.com/JBRector/generator-fred",
+  "name": "generator-mi",
+  "version": "0.0.1",
+  "description": "Front End Yeoman generator for Mindstream Interactive",
+  "homepage": "https://github.com/MindstreamInteractive/generator-ms",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JBRector/generator-fred"
+    "url": "https://github.com/MindstreamInteractive/generator-mi"
   },
   "author": {
-    "name": "Jason Rector",
-    "email": "jasonbrector@gmail.com",
-    "url": "http://www.jasonrectorweb.com"
+    "name": "Mindstream Interactive",
+    "email": "developers@mindstreaminteractive.com",
+    "url": "http://www.mindstreaminteractive.com"
   },
   "keywords": [
     "yeoman-generator",
@@ -22,7 +22,7 @@
     "front-end starter kit"
   ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.7"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",

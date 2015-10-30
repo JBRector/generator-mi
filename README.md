@@ -20,11 +20,14 @@
 
 ### Dependencies
 
-- [Yeoman](http://yeoman.io)
-- [Grunt](http://gruntjs.com/)
-- [Gulp](http://gulpjs.com/)
-- [Bower](http://bower.io/)
+- [nodejs](https://nodejs.org/)
+- [Yeoman](http://yeoman.io) - `npm install yo -g`
+- [Gulp](http://gulpjs.com/) - `npm install gulp -g`
 - [SASS](http://sass-lang.com/)
+
+If you want to use grunt instead of gulp, these are also required:
+- [Grunt CLI](http://gruntjs.com/) - `npm install grunt-cli -g`
+- [Bower](http://bower.io/) - `npm install bower -g`
 
 ## Usage
 
