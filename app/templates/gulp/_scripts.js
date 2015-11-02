@@ -20,11 +20,11 @@ $.gulp.task('lint-scripts', function() {
 $.gulp.task('scripts', ['lint-scripts'], function() {
     function doBrowserify(b) {
         b.bundle()
-            .on('error', $.notify.onError('<%= error.message %>'))
+            .on('error', $.notify.onError('<%%= error.message %>'))
             .pipe(source('main.js'))
             .pipe($.should(config.prod, streamify(uglify())))
             .pipe($.should(config.prod, $.rename({ suffix: '.min' })))
-            .pipe($.gulp.dest(config.dest));
+            .pipe($.gulp.dest(config.contentDir + 'scripts'));
     }
 
     var b = browserify({

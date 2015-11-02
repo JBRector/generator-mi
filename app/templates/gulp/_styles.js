@@ -25,9 +25,9 @@ $.gulp.task('styles', function() {
         .pipe(sass({
             percision: 4,
             includePaths: ['./node_modules']
-        }).on('error', $.notify.onError('<%= error.message %>')))
+        }).on('error', $.notify.onError('<%%= error.message %>')))
         .pipe(postcss(postpros))
         .pipe($.should(config.prod, $.rename({ suffix: '.min' })))
         .pipe($.should(!config.prod, sourcemaps.write()))
-        .pipe($.gulp.dest(config.dest));
+        .pipe($.gulp.dest(config.contentDir + 'styles'));
 });

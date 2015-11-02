@@ -9,5 +9,5 @@ $.gulp.task('images', function() {
             progressive: true,
             interlaced: true
         })))
-        .pipe($.gulp.dest(config.dest + 'images'));
+        .pipe($.gulp.dest(config.contentDir + 'images'));
 });
