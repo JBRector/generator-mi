@@ -1,6 +1,6 @@
 @import 'breakpoint-sass/stylesheets/breakpoint';
 
-@import 'vars';
+@import 'global/vars';
 
 @import 'utils/functions/map-getters';
 @import 'utils/functions/valid-value';
@@ -13,15 +13,46 @@
 @import 'global/normalize'; // not in vendor because it's altered
 @import 'global/base';
 
-// @import 'components/atoms/';
+/*    ATOMS
+*********************************************************************/
 
-// @import 'components/modules/';
+/* FORM COMPONENTS */
+@import 'components/atoms/inputs';
+@import 'components/atoms/labels';
+@import 'components/atoms/radio';
+@import 'components/atoms/select';
+@import 'components/atoms/textarea';
+@import 'components/atoms/buttons';
 
-// @import 'components/sections/';
+/* TYPE */
+@import 'components/atoms/headings';
+@import 'components/atoms/paragraph';
+@import 'components/atoms/links';
+@import 'components/atoms/lists';
 
-// @import 'components/templates/';
+/* STRUCTURE */
+@import 'components/atoms/logo';
+@import 'components/atoms/table';
 
-// @import 'components/views/';
+/*    MOLECULES
+*********************************************************************/
 
+@import 'components/molecules/form';
+@import 'components/molecules/navigation';
+
+/*    ORGANISMS
+*********************************************************************/
+
+@import 'components/organisms/footer';
+@import 'components/organisms/header';
+
+/*    TEMPLATES
+*********************************************************************/
+
+
+/*    PAGES
+*********************************************************************/
+
+/* MISC */
 @import 'global/trumps';
 @import 'global/shame';
