@@ -4,6 +4,7 @@
   "description": "Front End Yeoman generator for Mindstream Interactive",
   "homepage": "https://github.com/MindstreamInteractive/generator-mi",
   "main": "app/index.js",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/MindstreamInteractive/generator-mi"
