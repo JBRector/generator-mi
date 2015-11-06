@@ -11,6 +11,8 @@
  * return: 0.8333333em depending on a context font-size of 24px
  * Example 3: em(20, $unitless: false)
  * returns 0.8333333
+ *
+ * See CSS tricks article: https://css-tricks.com/snippets/sass/px-to-em-functions/
  */
 
 @function em($target, $context: $base-font-size, $unitless: false) {
