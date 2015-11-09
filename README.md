@@ -2,7 +2,9 @@
 
 ### A Front-End [Yeoman](http://yeoman.io) Generator for Mindstream Interactive projects
 
-This generator uses the [Front-End Boilerplate](https://github.com/myasonik/Front-end_Boilerplate) project originally created by [Michail Yasonik](https://github.com/myasonik)
+#### Current Version: 1.1
+
+This generator uses a modified version of the [Front-End Boilerplate](https://github.com/myasonik/Front-end_Boilerplate) project originally created by [Michail Yasonik](https://github.com/myasonik)
 
 ## Features
 
