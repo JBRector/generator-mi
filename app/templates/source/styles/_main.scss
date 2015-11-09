@@ -22,34 +22,34 @@
 *********************************************************************/
 
 /* FORM COMPONENTS */
-@import 'components/atoms/inputs';
-@import 'components/atoms/labels';
-@import 'components/atoms/radio';
-@import 'components/atoms/select';
-@import 'components/atoms/textarea';
-@import 'components/atoms/buttons';
+@import 'components/basics/inputs';
+@import 'components/basics/labels';
+@import 'components/basics/radio';
+@import 'components/basics/select';
+@import 'components/basics/textarea';
+@import 'components/basics/buttons';
 
 /* TYPE */
-@import 'components/atoms/headings';
-@import 'components/atoms/paragraph';
-@import 'components/atoms/links';
-@import 'components/atoms/lists';
+@import 'components/basics/headings';
+@import 'components/basics/paragraph';
+@import 'components/basics/links';
+@import 'components/basics/lists';
 
 /* STRUCTURE */
-@import 'components/atoms/logo';
-@import 'components/atoms/table';
+@import 'components/basics/logo';
+@import 'components/basics/table';
 
 /*    MOLECULES
 *********************************************************************/
 
-@import 'components/molecules/form';
-@import 'components/molecules/navigation';
+@import 'components/fragments/form';
+@import 'components/fragments/navigation';
 
 /*    ORGANISMS
 *********************************************************************/
 
-@import 'components/organisms/footer';
-@import 'components/organisms/header';
+@import 'components/modules/footer';
+@import 'components/modules/header';
 
 /*    TEMPLATES
 *********************************************************************/
