@@ -51,9 +51,9 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/styles/utils/functions');
         this.mkdir('source/styles/utils/mixins');
         this.mkdir('source/styles/components');
-        this.mkdir('source/styles/components/atoms');
-        this.mkdir('source/styles/components/molecules');
-        this.mkdir('source/styles/components/organisms');
+        this.mkdir('source/styles/components/basics');
+        this.mkdir('source/styles/components/fragments');
+        this.mkdir('source/styles/components/modules');
         this.mkdir('source/styles/components/templates');
         this.mkdir('source/styles/components/pages');
         this.mkdir('source/styles/vendor');
@@ -105,22 +105,23 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.copy('source/styles/utils/mixins/_clearfix.scss', 'source/styles/utils/mixins/_clearfix.scss');
         this.copy('source/styles/utils/mixins/_hide-text.scss', 'source/styles/utils/mixins/_hide-text.scss');
         this.copy('source/styles/utils/mixins/_reset.scss', 'source/styles/utils/mixins/_reset.scss');
-        this.copy('source/styles/components/atoms/_buttons.scss', 'source/styles/components/atoms/_buttons.scss');
-        this.copy('source/styles/components/atoms/_headings.scss', 'source/styles/components/atoms/_headings.scss');
-        this.copy('source/styles/components/atoms/_inputs.scss', 'source/styles/components/atoms/_inputs.scss');
-        this.copy('source/styles/components/atoms/_labels.scss', 'source/styles/components/atoms/_labels.scss');
-        this.copy('source/styles/components/atoms/_links.scss', 'source/styles/components/atoms/_links.scss');
-        this.copy('source/styles/components/atoms/_lists.scss', 'source/styles/components/atoms/_lists.scss');
-        this.copy('source/styles/components/atoms/_logo.scss', 'source/styles/components/atoms/_logo.scss');
-        this.copy('source/styles/components/atoms/_paragraph.scss', 'source/styles/components/atoms/_paragraph.scss');
-        this.copy('source/styles/components/atoms/_radio.scss', 'source/styles/components/atoms/_radio.scss');
-        this.copy('source/styles/components/atoms/_select.scss', 'source/styles/components/atoms/_select.scss');
-        this.copy('source/styles/components/atoms/_table.scss', 'source/styles/components/atoms/_table.scss');
-        this.copy('source/styles/components/atoms/_textarea.scss', 'source/styles/components/atoms/_textarea.scss');
-        this.copy('source/styles/components/molecules/_form.scss', 'source/styles/components/molecules/_form.scss');
-        this.copy('source/styles/components/molecules/_navigation.scss', 'source/styles/components/molecules/_navigation.scss');
-        this.copy('source/styles/components/organisms/_header.scss', 'source/styles/components/organisms/_header.scss');
-        this.copy('source/styles/components/organisms/_footer.scss', 'source/styles/components/organisms/_footer.scss');
+        this.copy('source/styles/utils/mixins/_spacing.scss', 'source/styles/utils/mixins/_spacing.scss');
+        this.copy('source/styles/components/basics/_buttons.scss', 'source/styles/components/basics/_buttons.scss');
+        this.copy('source/styles/components/basics/_headings.scss', 'source/styles/components/basics/_headings.scss');
+        this.copy('source/styles/components/basics/_inputs.scss', 'source/styles/components/basics/_inputs.scss');
+        this.copy('source/styles/components/basics/_labels.scss', 'source/styles/components/basics/_labels.scss');
+        this.copy('source/styles/components/basics/_links.scss', 'source/styles/components/basics/_links.scss');
+        this.copy('source/styles/components/basics/_lists.scss', 'source/styles/components/basics/_lists.scss');
+        this.copy('source/styles/components/basics/_logo.scss', 'source/styles/components/basics/_logo.scss');
+        this.copy('source/styles/components/basics/_paragraph.scss', 'source/styles/components/basics/_paragraph.scss');
+        this.copy('source/styles/components/basics/_radio.scss', 'source/styles/components/basics/_radio.scss');
+        this.copy('source/styles/components/basics/_select.scss', 'source/styles/components/basics/_select.scss');
+        this.copy('source/styles/components/basics/_table.scss', 'source/styles/components/basics/_table.scss');
+        this.copy('source/styles/components/basics/_textarea.scss', 'source/styles/components/basics/_textarea.scss');
+        this.copy('source/styles/components/fragments/_form.scss', 'source/styles/components/fragments/_form.scss');
+        this.copy('source/styles/components/fragments/_navigation.scss', 'source/styles/components/fragments/_navigation.scss');
+        this.copy('source/styles/components/modules/_header.scss', 'source/styles/components/modules/_header.scss');
+        this.copy('source/styles/components/modules/_footer.scss', 'source/styles/components/modules/_footer.scss');
 
         // For files that need info from yeoman, use .template instead of .copy.
         var context = {
