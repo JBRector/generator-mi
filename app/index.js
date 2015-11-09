@@ -97,9 +97,11 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.copy('source/styles/global/_shame.scss', 'source/styles/global/_shame.scss');
         this.copy('source/styles/global/_trumps.scss', 'source/styles/global/_trumps.scss');
         this.copy('source/styles/global/_vars.scss', 'source/styles/global/_vars.scss');
+        this.copy('source/styles/utils/functions/_em.scss', 'source/styles/utils/functions/_em.scss');
         this.copy('source/styles/utils/functions/_map-getters.scss', 'source/styles/utils/functions/_map-getters.scss');
         this.copy('source/styles/utils/functions/_valid-value.scss', 'source/styles/utils/functions/_valid-value.scss');
         this.copy('source/styles/utils/mixins/_attention.scss', 'source/styles/utils/mixins/_attention.scss');
+        this.copy('source/styles/utils/mixins/_centerer.scss', 'source/styles/utils/mixins/_centerer.scss');
         this.copy('source/styles/utils/mixins/_clearfix.scss', 'source/styles/utils/mixins/_clearfix.scss');
         this.copy('source/styles/utils/mixins/_hide-text.scss', 'source/styles/utils/mixins/_hide-text.scss');
         this.copy('source/styles/utils/mixins/_reset.scss', 'source/styles/utils/mixins/_reset.scss');
