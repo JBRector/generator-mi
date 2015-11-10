@@ -87,7 +87,6 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.copy('gulp/_images.js', 'gulp/images.js');
         this.copy('gulp/_scripts.js', 'gulp/scripts.js');
         this.copy('gulp/_styles.js', 'gulp/styles.js');
-        this.copy('gulp/_watching.js', 'gulp/watching.js');
 
         // Copy script and sass files
         this.copy('source/scripts/_main.js', 'source/scripts/main.js');
@@ -133,6 +132,7 @@ var MSGenerator = yeoman.generators.Base.extend({
             this.template('source/views/templates/_master.jade', 'source/views/templates/master.jade', context);
         } else {
             this.template('source/views/partials/_head.html', 'source/views/partials/_head.html', context);
+            this.template('gulp/_watching.js', 'gulp/watching.js', context);
         }
 
         this.template('gulp/_templates.js', 'gulp/templates.js', context);
