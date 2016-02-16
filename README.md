@@ -2,7 +2,7 @@
 
 ### A Front-End [Yeoman](http://yeoman.io) Generator for Mindstream Interactive projects
 
-#### Current Version: 1.1.1
+#### Current Version: 1.1.2
 
 This generator uses a modified version of the [Front-End Boilerplate](https://github.com/myasonik/Front-end_Boilerplate) project originally created by [Michail Yasonik](https://github.com/myasonik)
 
@@ -26,7 +26,7 @@ Install - `npm install -g generator-mi`
 
 Generate a new project - cd in to project directory and `yo mi`.
 
-The generator will pull down necessary files and automaticlly run `npm install` for you.
+The generator will pull down necessary files and automatically run `npm install` for you.
 
 Build the site: `gulp`
 
