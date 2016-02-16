@@ -140,6 +140,7 @@ var MSGenerator = yeoman.generators.Base.extend({
 
         // Copy npm and git files
         this.copy('_.gitignore', '.gitignore');
+        this.copy('_.eslintrc', '.eslintrc');
         this.copy('_README.md', 'README.md');
 
         if (this.use_Jade) {
