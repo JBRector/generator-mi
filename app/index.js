@@ -57,6 +57,7 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/styles/components/templates');
         this.mkdir('source/styles/components/pages');
         this.mkdir('source/styles/vendor');
+        this.mkdir('source/images');
         this.mkdir('source/views');
         this.mkdir('gulp');
 
