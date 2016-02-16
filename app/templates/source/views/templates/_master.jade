@@ -11,17 +11,11 @@ html(lang="en")
 
         //- link(rel='dns-prefetch', href='//example.com')
 
-        if !production
-            link(rel='stylesheet', href='main.css')
-        else
-            link(rel='stylesheet', href='main.min.css')
+        link(rel='stylesheet', href='Content/styles/main.css')
 
     body
         block body
 
-        if !production
-            script(src='main.js')
-        else
-            script(src='main.min.js')
+        script(src='Content/scripts/main.js')
         
         block scripts
