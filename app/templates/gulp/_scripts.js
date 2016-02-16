@@ -23,7 +23,6 @@ $.gulp.task('scripts', ['lint-scripts'], function() {
             .on('error', $.notify.onError('<%%= error.message %>'))
             .pipe(source('main.js'))
             .pipe($.should(config.prod, streamify(uglify())))
-            .pipe($.should(config.prod, $.rename({ suffix: '.min' })))
             .pipe($.gulp.dest(config.contentDir + 'scripts'));
     }
 
