@@ -2,16 +2,16 @@
 
 ### A Front-End [Yeoman](http://yeoman.io) Generator for Mindstream Interactive projects
 
-#### Current Version: 1.1.3
+#### Current Version: 1.1.4
 
 This generator uses a modified version of the [Front-End Boilerplate](https://github.com/myasonik/Front-end_Boilerplate) project originally created by [Michail Yasonik](https://github.com/myasonik)
 
 ## Features
 
-- Uses [SASS](http://sass-lang.com/) for CSS preprocessing
+- Uses [Sass](http://sass-lang.com/) for CSS preprocessing
 - Can use either [Jade](http://jade-lang.com/) or [HTML includes](https://www.npmjs.com/package/gulp-file-include) for templating
 - Uses [Browserify](http://browserify.org/) to manage and bundle js dependencies
-- Uses [Breakpoint SASS](http://breakpoint-sass.com/)
+- Uses [Breakpoint Sass](http://breakpoint-sass.com/)
 - A Gulp task to fire up a local server for development with automatic reloading on save
 - A Gulp production task to minimize images, concatenate and minify js and css, and compile HTML.
 
