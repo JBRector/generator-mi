@@ -1,6 +1,6 @@
 {
   "name": "generator-mi",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Front End Yeoman generator for Mindstream Interactive",
   "homepage": "https://github.com/MindstreamInteractive/generator-mi",
   "main": "app/index.js",
