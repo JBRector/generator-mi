@@ -3,5 +3,6 @@ module.exports = {
     notify: require('gulp-notify'),
     rename: require('gulp-rename'),
     should: require('gulp-if'),
-    plumber: require('gulp-plumber')
+    plumber: require('gulp-plumber'),
+    changed: require('gulp-changed')
 };

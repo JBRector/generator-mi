@@ -5,9 +5,10 @@ var imagemin = require('gulp-imagemin');
 
 $.gulp.task('images', function() {
     return $.gulp.src(config.src + 'images/**/*.{png,jpg,jpeg,gif,svg}')
-        .pipe($.should(config.prod, imagemin({
+        .pipe($.changed(config.contentDir + 'images'))
+        .pipe(imagemin({
             progressive: true,
             interlaced: true
-        })))
+        }))
         .pipe($.gulp.dest(config.contentDir + 'images'));
 });
