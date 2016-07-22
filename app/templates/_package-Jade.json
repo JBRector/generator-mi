@@ -1,5 +1,5 @@
 {
-  "name": "MindstreamInteractive_FrontEnd_Starter",
+  "name": "<%= site_slug %>",
   "version": "0.1.0",
   "license": "MIT",
   "repository": {

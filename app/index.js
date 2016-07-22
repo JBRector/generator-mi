@@ -126,6 +126,7 @@ var MSGenerator = yeoman.generators.Base.extend({
         // For files that need info from yeoman, use .template instead of .copy.
         var context = {
             site_name:      this.projectName,
+            site_slug:      this.convertToSlug(this.projectName),
             use_Jade:       this.use_Jade
         };
 
@@ -137,19 +138,30 @@ var MSGenerator = yeoman.generators.Base.extend({
         }
 
         this.template('gulp/_templates.js', 'gulp/templates.js', context);
+        this.template('_README.md', 'README.md', context);
+
+        if (this.use_Jade) {
+            this.template('_package-Jade.json', 'package.json', context);
+        } else {
+            this.template('_package.json', 'package.json', context);
+        }
 
         // Copy npm and git files
         this.copy('_.gitignore', '.gitignore');
         this.copy('_.eslintrc.js', '.eslintrc.js');
         this.copy('_.sass-lint.yml', '.sass-lint.yml');
-        this.copy('_README.md', 'README.md');
+    },
 
-        if (this.use_Jade) {
-            this.copy('_package-Jade.json', 'package.json');
-        } else {
-            this.copy('_package.json', 'package.json');
+    // Convert string to URL-friendly slug
+    convertToSlug: function(str) {
+        if (str) {
+            return str
+                .toLowerCase()
+                .replace(/ /g,'-')
+                .replace(/[^\w-]+/g,'');
         }
     }
+
 });
 
 module.exports = MSGenerator;
