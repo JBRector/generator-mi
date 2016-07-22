@@ -1,4 +1,4 @@
-# Front-end Boilerplate
+# <%= site_name %>
 
 ### Using Gulp, Browserify & Sass
 * Dependencies: node, (node) sass, gulp
