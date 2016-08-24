@@ -21,7 +21,8 @@ html {
 }
 
 body {
-    font: 62.5%/1.25 $regular;
+    font-size: 100%;
+    line-height: $base-line-height;
 }
 
 body,
