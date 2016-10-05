@@ -85,6 +85,7 @@ var MSGenerator = yeoman.generators.Base.extend({
         this.copy('_gulpfile.js', 'gulpfile.js');
         this.copy('gulp/_common.js', 'gulp/common.js');
         this.copy('gulp/_config.js', 'gulp/config.js');
+        this.copy('gulp/_copy.js', 'gulp/copy.js');
         this.copy('gulp/_images.js', 'gulp/images.js');
         this.copy('gulp/_scripts.js', 'gulp/scripts.js');
         this.copy('gulp/_styles.js', 'gulp/styles.js');

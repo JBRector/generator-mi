@@ -34,3 +34,23 @@
         @return $result + 0em;
     }
 }
+
+@function rem($target, $context: $base-font-size, $unitless: false) {
+    @if $target == 0 { @return 0; }
+
+    @if(unitless($target)) {
+        $target: $target + 0px;
+    }
+
+    @if(unitless($context)) {
+        $context: $context + 0px;
+    }
+
+    //Determine whether we want line-height unitless or not
+    $result: $target / $context;
+    @if $unitless == true {
+        @return $result;
+    } @else {
+        @return $result + 0rem;
+    }
+}

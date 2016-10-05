@@ -30,5 +30,5 @@ $.gulp.task('styles', function() {
         }).on('error', $.notify.onError('<%%= error.message %>')))
         .pipe(postcss(postpros))
         .pipe($.should(!config.prod, sourcemaps.write()))
-        .pipe($.gulp.dest(config.contentDir + 'styles'));
+        .pipe($.gulp.dest(config.contentDir + 'Styles'));
 });
