@@ -45,6 +45,7 @@ var MSGenerator = yeoman.generators.Base.extend({
         // Create all of the needed directories
         this.mkdir('source');
         this.mkdir('source/scripts');
+        this.mkdir('source/scripts/modules');
         this.mkdir('source/styles');
         this.mkdir('source/styles/global');
         this.mkdir('source/styles/utils');
@@ -92,6 +93,7 @@ var MSGenerator = yeoman.generators.Base.extend({
 
         // Copy script and sass files
         this.copy('source/scripts/_main.js', 'source/scripts/main.js');
+        this.copy('source/scripts/modules/_support-webp.js', 'source/scripts/modules/support-webp.js');
         this.copy('source/styles/_main.scss', 'source/styles/main.scss');
         this.copy('source/styles/global/_base.scss', 'source/styles/global/_base.scss');
         this.copy('source/styles/global/_normalize.scss', 'source/styles/global/_normalize.scss');
