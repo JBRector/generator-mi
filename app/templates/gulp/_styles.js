@@ -2,11 +2,30 @@ var $ = require('./common.js');
 var config = require('./config.js');
 
 var sass = require('gulp-sass');
-var sassLint = require('gulp-sass-lint');
+var gulpStylelint = require('gulp-stylelint');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 
-$.gulp.task('styles', function() {
+// Stylelint
+$.gulp.task('lint-styles', function() {
+    return $.gulp
+        .src([
+            config.src + 'styles/**/*.scss',
+            '!' + config.src + 'styles/utils/**/*.scss',
+            '!' + config.src + 'styles/global/_normalize.scss',
+            '!' + config.src + 'styles/pattern-library/**/*.scss'
+        ])
+        .pipe(gulpStylelint({
+            reporters: [
+                {
+                    formatter: 'string',
+                    console: true
+                }
+            ]
+        }));
+});
+
+$.gulp.task('styles', ['lint-styles'], function() {
     var postpros = [
         require('css-mqpacker')({sort: true}),
         require('autoprefixer')({'browsers': '> 0%'})
@@ -20,9 +39,6 @@ $.gulp.task('styles', function() {
     }
 
     $.gulp.src(config.src + 'styles/*.scss')
-        .pipe(sassLint())
-        .pipe(sassLint.format())
-        .pipe(sassLint.failOnError())
         .pipe($.should(!config.prod, sourcemaps.init()))
         .pipe(sass({
             percision: 4,

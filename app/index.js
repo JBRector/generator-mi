@@ -149,10 +149,10 @@ var MSGenerator = yeoman.generators.Base.extend({
             this.template('_package.json', 'package.json', context);
         }
 
-        // Copy npm and git files
+        // Copy npm, git and linting files
         this.copy('_.gitignore', '.gitignore');
         this.copy('_.eslintrc.js', '.eslintrc.js');
-        this.copy('_.sass-lint.yml', '.sass-lint.yml');
+        this.copy('_.stylelintrc', '.stylelintrc');
     },
 
     // Convert string to URL-friendly slug

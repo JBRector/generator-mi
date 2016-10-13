@@ -26,8 +26,8 @@ $laptop: 1200px;
 $desktop: 1600px;
 
 // MQPacker Order Definition
-@include mq($mobile-wide) { /* 480px */ }
-@include mq($tablet-narrow) { /* 720px */ }
-@include mq($tablet-wide) { /* 1024px */ }
-@include mq($laptop) { /* 1200px */ }
-@include mq($desktop) { /* 1600px */ }
+@include mq($mobile-wide) {}
+@include mq($tablet-narrow) {}
+@include mq($tablet-wide) {}
+@include mq($laptop) {}
+@include mq($desktop) {}
